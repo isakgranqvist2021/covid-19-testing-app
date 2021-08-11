@@ -50,6 +50,7 @@ export async function submit_test(req, res) {
         const doc = await createTest({
             ...req.body,
             tid: tid,
+            type: req.body.type.toUpperCase(),
             dob: new Date(`${req.body.dd} ${req.body.mm} ${req.body.yyyy}`),
         });
 

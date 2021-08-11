@@ -1,6 +1,6 @@
 const ids = [];
 
-function setupRows() {
+function setupRows(btn) {
     let rows = document.querySelectorAll("tbody tr");
 
     rows.forEach((row) => {
@@ -17,15 +17,31 @@ function setupRows() {
                 row.classList.add("selected");
                 ids.push(tid);
             }
+
+            if (ids.length > 0) {
+                btn.style.display = "block";
+                btn.textContent = `Export CSV (${ids.length})`;
+            } else {
+                btn.style.display = "none";
+            }
         });
     });
 }
 
 (function () {
     let btn = document.getElementById("export-csv");
-    setupRows();
+    btn.style.display = "none";
+    setupRows(btn);
 
-    btn.addEventListener("click", (e) => {
-        console.log(ids);
+    btn.addEventListener("click", async (e) => {
+        const response = await fetch("/admin/export-csv", {
+            method: "POST",
+            body: JSON.stringify(ids),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        }).then((res) => res.json());
+
+        console.log(response);
     });
 })();

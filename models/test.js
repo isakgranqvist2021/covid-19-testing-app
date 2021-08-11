@@ -117,3 +117,11 @@ export async function deleteOne(filter) {
         return Promise.reject("an error has occured");
     }
 }
+
+export async function findMany(filter) {
+    try {
+        return await TestModel.find(filter);
+    } catch (err) {
+        return Promise.reject("an error has occured");
+    }
+}

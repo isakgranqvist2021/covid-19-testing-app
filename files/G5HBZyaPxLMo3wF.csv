@@ -1,0 +1,6 @@
+createdAt,updatedAt,email,status,_id,type,name,gender,phone,entity,department,employee,tid,dob,__v
+1628717676000,1628717914614,isakwebdev@gmail.com,pending,"""6114426dd384503ef89019a2""",PCR,Isak Granqvist,male,+461925125,Coronation merchants bank,Facilities Mgt,qwtqwt5qwt,AGPC0703202161,884127600000,0
+1628717721249,,isakwebdev@gmail.com,pending,"""6114429daecdee37409b0bc5""",pcr,Isak Granqvist,male,+461925125,Coronation merchants bank,Facilities Mgt,qwtqwt5qwt,AGPC0703202163,899244000000,0
+1628717790149,1628722033159,isakwebdev@gmail.com,pending,"""611442df3edc2212445d1040""",pcr,Isak Granqvist,male,+461925125,Coronation merchants bank,Facilities Mgt,qwtqwt5qwt,AGPC0703202165,899244000000,0
+1628723422163,,isakwebdev@gmail.com,pending,"""611458eaf4695b42605a72b9""",RDT,Isak Granqvist,male,+461925125,Coronation merchants bank,Facilities Mgt,qwtqwt5qwt,AGRD0704202170,899244000000,0
+1628723436416,,isakwebdev@gmail.com,pending,"""611458f913e5cd41f085f688""",pcr,Isak Granqvist,male,+46192512512,Coronation merchants bank,Facilities Mgt,qwtqwt5qwt,AGPC0704202171,899244000000,0
