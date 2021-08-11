@@ -95,3 +95,11 @@ export async function findAll() {
         return Promise.reject("an error has occured");
     }
 }
+
+export async function updateOne(filter, update) {
+    try {
+        return await TestModel.findOneAndUpdate(filter, update);
+    } catch (err) {
+        return Promise.reject("an error has occured");
+    }
+}

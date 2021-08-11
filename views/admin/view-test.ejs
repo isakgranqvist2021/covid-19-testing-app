@@ -1,144 +1,208 @@
 <%- include('../partials/admin-nav') %>
 <div class="container mt-3 py-5">
-    <header class="mb-5">
+    <header class="mb-3">
         <h1>
             <%= test.name %>
             <p class="lead"><%= test.tid %></p>
         </h1>
     </header>
+
+    <% if(alert) { %>
+    <div class="alert alert-<%= alert.type %>" role="alert">
+        <%= alert.message %>
+    </div>
+    <%} %>
     <div class="col-12 col-md-8">
-        <form class="w-100">
-            <div class="row">
-                <section class="mb-3 col-12 col-md-6">
-                    <label for="">Created At</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        value="<%= test.createdAt %>"
-                        disabled
-                    />
-                </section>
-                <section class="mb-3 col-12 col-md-6">
-                    <label for="">Updated At</label>
-                    <input
-                        type="text"
-                        class="form-control"
-                        value="<%= test.updatedAt %>"
-                        disabled
-                    />
-                </section>
-            </div>
+        <form class="w-100" method="POST" action="/admin/update-test">
             <section class="mb-3">
-                <label for="">Email</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<%= test.email %>"
-                    disabled
-                />
-            </section>
-            <section class="mb-3">
-                <label for="">Status</label>
+                <label for="" class="form-label">Status</label>
+                <% if(user.accessLevel >= 1) { %>
                 <select
                     class="form-control"
                     value="<%= test.status %>"
+                    name="status"
+                >
+                    <option value="pending">pending</option>
+                    <option value="positive">positive</option>
+                    <option value="negative">negative</option>
+                </select>
+                <% } else { %>
+                <select
+                    class="form-control"
+                    value="<%= test.status %>"
+                    name="status"
                     disabled
                 >
-                    <option>pending</option>
-                    <option>positive</option>
-                    <option>negative</option>
+                    <option value="pending">pending</option>
+                    <option value="positive">positive</option>
+                    <option value="negative">negative</option>
                 </select>
+                <% }%>
+            </section>
+            <div class="row">
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Test Type</label>
+                    <input type="text" class="form-control" name="type"
+                    value="<%= test.type.toUpperCase() %>" <%= user.accessLevel
+                    <= 1 ? 'disabled' : ''%> />
+                </section>
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Test ID</label>
+                    <input type="text" class="form-control" name="tid"
+                    value="<%= test.tid %>" <%= user.accessLevel <= 1 ?
+                    'disabled' : ''%> />
+                </section>
+            </div>
+            <div class="row">
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Created At</label>
+                    <input type="text" class="form-control" name="createdAt"
+                    value="<%= test.createdAt %>" <%= user.accessLevel <= 1 ?
+                    'disabled' : ''%> />
+                </section>
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Updated At</label>
+                    <input type="text" class="form-control" name="updatedAt"
+                    value="<%= test.updatedAt %>" <%= user.accessLevel <= 1 ?
+                    'disabled' : ''%> />
+                </section>
+            </div>
+            <div class="row">
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Email</label>
+                    <input type="text" class="form-control" name="email"
+                    value="<%= test.email %>" <%= user.accessLevel <= 1 ?
+                    'disabled' : ''%> />
+                </section>
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Phone</label>
+                    <input type="text" class="form-control" name="phone"
+                    value="<%= test.phone %>" <%= user.accessLevel <= 1 ?
+                    'disabled' : ''%> />
+                </section>
+            </div>
+            <div class="row">
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Name</label>
+                    <input type="text" class="form-control" name="name"
+                    value="<%= test.name %>" <%= user.accessLevel <= 1 ?
+                    'disabled' : ''%> />
+                </section>
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Gender</label>
+                    <% if(user.accessLevel >= 2) { %>
+                    <select
+                        type="text"
+                        class="form-control"
+                        name="gender"
+                        value="<%= test.gender %>"
+                    >
+                        <option>male</option>
+                        <option>female</option>
+                    </select>
+                    <% } else { %>
+                    <select
+                        type="text"
+                        class="form-control"
+                        name="gender"
+                        value="<%= test.gender %>"
+                        disabled
+                    >
+                        <option>male</option>
+                        <option>female</option>
+                    </select>
+                    <% } %>
+                </section>
+            </div>
+            <div class="row">
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Entity</label>
+                    <% if(user.accessLevel >= 2) { %>
+                    <select
+                        class="form-control"
+                        name="entity"
+                        value="<%= test.entity %>"
+                    >
+                        <% entities.forEach(entity => { %>
+                        <option value="<%= entity %>"><%= entity %></option>
+                        <% }) %>
+                    </select>
+                    <% } else { %>
+                    <select
+                        class="form-control"
+                        name="entity"
+                        value="<%= test.entity %>"
+                        disabled
+                    >
+                        <% entities.forEach(entity => { %>
+                        <option value="<%= entity %>"><%= entity %></option>
+                        <% }) %></select
+                    ><% } %>
+                </section>
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Department</label>
+                    <% if(user.accessLevel >= 2) { %>
+                    <select
+                        class="form-control"
+                        name="department"
+                        value="<%= test.department %>"
+                    >
+                        <% departments.forEach(dep => { %>
+                        <option value="<%= dep %>"><%= dep %></option>
+                        <% }) %>
+                    </select>
+                    <% } else { %>
+                    <select
+                        class="form-control"
+                        name="department"
+                        disabled
+                        value="<%= test.department %>"
+                    >
+                        <% departments.forEach(dep => { %>
+                        <option value="<%= dep %>"><%= dep %></option>
+                        <% }) %>
+                    </select>
+                    <% } %>
+                </section>
+            </div>
+            <section class="mb-3">
+                <label for="" class="form-label">Employee</label>
+                <input type="text" class="form-control" name="employee"
+                value="<%= test.employee %>" <%= user.accessLevel <= 1 ?
+                'disabled' : ''%> />
             </section>
             <section class="mb-3">
-                <label for="">Database Identifier</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<%= test._id %>"
-                    disabled
-                />
+                <label for="" class="form-label">Database Identifier</label>
+                <input type="text" class="form-control" name="_id" value="<%=
+                test._id %>" <%= user.accessLevel <= 1 ? 'disabled' : ''%> />
             </section>
             <section class="mb-3">
-                <label for="">Test Type</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<%= test.type %>"
-                    disabled
-                />
+                <label for="" class="form-label">Date Of Birth</label>
+                <input type="text" class="form-control" name="dob" value="<%=
+                test.dob %>" <%= user.accessLevel <= 1 ? 'disabled' : ''%> />
             </section>
-            <section class="mb-3">
-                <label for="">Name</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<%= test.name %>"
+
+            <div class="d-flex">
+                <% if(user.accessLevel === 2) { %>
+                <a
+                    href="/admin/delete-test/<%= test._id %>"
+                    class="btn btn-outline-danger"
+                    >Delete Test</a
+                >
+                <% } %> <% if(user.accessLevel >= 1) { %>
+                <button class="btn btn-success d-block ms-auto" type="submit">
+                    Update Test
+                </button>
+                <% } else { %>
+                <button
+                    class="btn btn-success d-block ms-auto"
+                    type="button"
                     disabled
-                />
-            </section>
-            <section class="mb-3">
-                <label for="">Gender</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<%= test.gender %>"
-                    disabled
-                />
-            </section>
-            <section class="mb-3">
-                <label for="">Phone</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<%= test.phone %>"
-                    disabled
-                />
-            </section>
-            <section class="mb-3">
-                <label for="">Entity</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<%= test.entity %>"
-                    disabled
-                />
-            </section>
-            <section class="mb-3">
-                <label for="">Department</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<%= test.department %>"
-                    disabled
-                />
-            </section>
-            <section class="mb-3">
-                <label for="">Employee</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<%= test.employee %>"
-                    disabled
-                />
-            </section>
-            <section class="mb-3">
-                <label for="">Test ID</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<%= test.tid %>"
-                    disabled
-                />
-            </section>
-            <section class="mb-3">
-                <label for="">Date Of Birth</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    value="<%= test.dob %>"
-                    disabled
-                />
-            </section>
+                >
+                    Update Test
+                </button>
+                <% } %>
+            </div>
         </form>
     </div>
 </div>

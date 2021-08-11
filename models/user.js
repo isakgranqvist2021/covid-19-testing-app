@@ -8,7 +8,7 @@ const userSchema = new Schema({
     updatedAt: { type: Date, default: null },
     lastLogin: { type: Date, default: new Date() },
     username: { type: String, required: true, unique: true },
-    email: { type: String, required: true, unique: true },
+    email: { type: String, required: true },
     password: { type: String, required: true },
     accessLevel: { type: Number, default: 0 },
 });
