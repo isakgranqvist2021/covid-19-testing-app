@@ -13,6 +13,8 @@
         </div>
         <%} %>
         <form class="w-100" method="POST" action="/admin/update-test">
+            <input type="hidden" name="_id" value="<%= test._id %>">
+
             <section class="mb-3">
                 <label for="" class="form-label">Status</label>
                 <% if(user.accessLevel >= 1) { %>
@@ -170,8 +172,8 @@
             </section>
             <section class="mb-3">
                 <label for="" class="form-label">Database Identifier</label>
-                <input type="text" class="form-control" name="_id" value="<%=
-                test._id %>" <%= user.accessLevel <= 1 ? 'disabled' : ''%> />
+                <input type="text" class="form-control" value="<%=
+                test._id %>" disabled/>
             </section>
             <section class="mb-3">
                 <label for="" class="form-label">Date Of Birth</label>
