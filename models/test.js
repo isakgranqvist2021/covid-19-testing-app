@@ -79,3 +79,19 @@ export async function findTest(filter) {
         return Promise.reject("test not found");
     }
 }
+
+export async function findOne(filter) {
+    try {
+        return await TestModel.findOne(filter);
+    } catch (err) {
+        return Promise.reject("an error has occured");
+    }
+}
+
+export async function findAll() {
+    try {
+        return await TestModel.find({});
+    } catch (err) {
+        return Promise.reject("an error has occured");
+    }
+}

@@ -3,7 +3,7 @@ const router = express.Router();
 
 import { logged_in, logged_out } from "../middlewares/middlewares";
 
-import { get_dashboard } from "../controllers/admin/dashboard";
+import { get_dashboard, view_test } from "../controllers/admin/dashboard";
 import {
     get_login,
     get_register,
@@ -19,5 +19,6 @@ router.post("/register", logged_out, post_register);
 
 router.get("/logout", logged_in, logout);
 router.get("/dashboard", logged_in, get_dashboard);
+router.get("/view-test/:id", logged_in, view_test);
 
 export default router;

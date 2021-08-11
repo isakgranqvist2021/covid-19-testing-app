@@ -1,0 +1,144 @@
+<%- include('../partials/admin-nav') %>
+<div class="container mt-3 py-5">
+    <header class="mb-5">
+        <h1>
+            <%= test.name %>
+            <p class="lead"><%= test.tid %></p>
+        </h1>
+    </header>
+    <div class="col-12 col-md-8">
+        <form class="w-100">
+            <div class="row">
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="">Created At</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        value="<%= test.createdAt %>"
+                        disabled
+                    />
+                </section>
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="">Updated At</label>
+                    <input
+                        type="text"
+                        class="form-control"
+                        value="<%= test.updatedAt %>"
+                        disabled
+                    />
+                </section>
+            </div>
+            <section class="mb-3">
+                <label for="">Email</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="<%= test.email %>"
+                    disabled
+                />
+            </section>
+            <section class="mb-3">
+                <label for="">Status</label>
+                <select
+                    class="form-control"
+                    value="<%= test.status %>"
+                    disabled
+                >
+                    <option>pending</option>
+                    <option>positive</option>
+                    <option>negative</option>
+                </select>
+            </section>
+            <section class="mb-3">
+                <label for="">Database Identifier</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="<%= test._id %>"
+                    disabled
+                />
+            </section>
+            <section class="mb-3">
+                <label for="">Test Type</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="<%= test.type %>"
+                    disabled
+                />
+            </section>
+            <section class="mb-3">
+                <label for="">Name</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="<%= test.name %>"
+                    disabled
+                />
+            </section>
+            <section class="mb-3">
+                <label for="">Gender</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="<%= test.gender %>"
+                    disabled
+                />
+            </section>
+            <section class="mb-3">
+                <label for="">Phone</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="<%= test.phone %>"
+                    disabled
+                />
+            </section>
+            <section class="mb-3">
+                <label for="">Entity</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="<%= test.entity %>"
+                    disabled
+                />
+            </section>
+            <section class="mb-3">
+                <label for="">Department</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="<%= test.department %>"
+                    disabled
+                />
+            </section>
+            <section class="mb-3">
+                <label for="">Employee</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="<%= test.employee %>"
+                    disabled
+                />
+            </section>
+            <section class="mb-3">
+                <label for="">Test ID</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="<%= test.tid %>"
+                    disabled
+                />
+            </section>
+            <section class="mb-3">
+                <label for="">Date Of Birth</label>
+                <input
+                    type="text"
+                    class="form-control"
+                    value="<%= test.dob %>"
+                    disabled
+                />
+            </section>
+        </form>
+    </div>
+</div>

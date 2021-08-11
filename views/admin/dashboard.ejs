@@ -1,4 +1,35 @@
+<link rel="stylesheet" href="/public/css/dashboard.min.css" />
+
 <%- include('../partials/admin-nav') %>
 <div class="container mt-3">
-    <h1>Administration Dashboard</h1>
+    <h1 class="my-4">Administration Dashboard</h1>
+
+    <div class="col-md-12">
+        <h3>Tests</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Test ID</th>
+                    <th>Test Status</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% tests.forEach((test, i) => { %>
+                <tr
+                    title="view test"
+                    onclick="window.location.pathname = '/admin/view-test/<%= test._id %>'"
+                >
+                    <td><%= i + 1 %></td>
+                    <td><%= test.tid %></td>
+                    <td><%= test.status %></td>
+                    <td><%= test.name %></td>
+                    <td><%= test.phone %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
 </div>
