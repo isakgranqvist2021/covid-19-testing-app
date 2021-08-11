@@ -8,6 +8,16 @@ export function alerts(req, res, next) {
     return next();
 }
 
+export function logged_in(req, res, next) {
+    if (!req.session.uid) return res.redirect("/");
+    return next();
+}
+
+export function logged_out(req, res, next) {
+    if (req.session.uid) return res.redirect("/admin/dashboard");
+    return next();
+}
+
 export function set_form_data(req, res, next) {
     if (!req.session.formData) {
         let entities = JSON.parse(

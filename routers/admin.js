@@ -1,6 +1,8 @@
 import express from "express";
 const router = express.Router();
 
+import { logged_in, logged_out } from "../middlewares/middlewares";
+
 import { get_dashboard } from "../controllers/admin/dashboard";
 import {
     get_login,
@@ -10,14 +12,12 @@ import {
     logout,
 } from "../controllers/admin/auth";
 
-router.get("/dashboard", get_dashboard);
+router.get("/login", logged_out, get_login);
+router.get("/register", logged_out, get_register);
+router.post("/login", logged_out, post_login);
+router.post("/register", logged_out, post_register);
 
-router.get("/login", get_login);
-router.get("/register", get_register);
-
-router.post("/login", post_login);
-router.post("/register", post_register);
-
-router.get("/logout", logout);
+router.get("/logout", logged_in, logout);
+router.get("/dashboard", logged_in, get_dashboard);
 
 export default router;
