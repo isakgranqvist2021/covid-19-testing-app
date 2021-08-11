@@ -1,0 +1,30 @@
+<div class="container">
+    <div class="col-12 col-md-4 m-auto mt-5">
+        <h1 class="mb-4">Log in</h1>
+        <form method="POST" action="/admin/login">
+            <section class="mb-3">
+                <label for="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    class="form-control"
+                    name="username"
+                />
+            </section>
+            <section class="mb-3">
+                <label for="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    class="form-control"
+                    name="password"
+                />
+                <div class="form-text">
+                    Don't have an account?
+                    <a href="/admin/register">Register</a>
+                </div>
+            </section>
+            <button class="btn btn-success d-block ms-auto">Log in</button>
+        </form>
+    </div>
+</div>

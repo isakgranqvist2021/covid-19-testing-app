@@ -56,9 +56,7 @@ export async function submit_test(req, res) {
         });
 
         return res.render("index/success", {
-            data: {
-                value: "qwtqwt",
-            },
+            data: doc,
         });
     } catch (err) {
         req.session.alert = { type: "danger", message: err };
