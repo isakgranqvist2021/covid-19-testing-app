@@ -53,9 +53,17 @@ export async function submit_test(req, res) {
             dob: new Date(`${req.body.dd} ${req.body.mm} ${req.body.yyyy}`),
         });
 
-        return res.render("index/success", {
-            data: doc,
-        });
+        if (!req.body.admin) {
+            return res.render("index/success", {
+                data: doc,
+            });
+        } else {
+            req.session.alert = {
+                type: "success",
+                message: "test has been added",
+            };
+            return res.redirect("/admin/dashboard");
+        }
     } catch (err) {
         console.log(err);
 

@@ -11,15 +11,7 @@
     <%} %>
 
     <div class="col-md-12">
-        <h3 class="d-flex justify-content-between">
-            Tests
-            <a
-                href="/admin/add-test"
-                class="btn btn-outline-primary d-flex align-items-center"
-            >
-                <span class="material-icons-outlined">add</span>
-            </a>
-        </h3>
+        <h3>Tests</h3>
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -32,11 +24,14 @@
             </thead>
             <tbody>
                 <% tests.forEach((test, i) => { %>
-                <tr
-                    title="view test"
-                    onclick="window.location.pathname = '/admin/view-test/<%= test._id %>'"
-                >
-                    <td><%= i + 1 %></td>
+                <tr data-tid="<%= test.tid %>">
+                    <td
+                        class="link"
+                        title="view test"
+                        onclick="window.location.pathname = '/admin/view-test/<%= test._id %>'"
+                    >
+                        <%= i + 1 %>
+                    </td>
                     <td><%= test.tid %></td>
                     <td><%= test.status %></td>
                     <td><%= test.name %></td>
@@ -45,5 +40,16 @@
                 <% }) %>
             </tbody>
         </table>
+        <div class="d-flex">
+            <a
+                href="/admin/add-test"
+                class="btn btn-outline-primary d-flex align-items-center me-3"
+            >
+                <span class="material-icons-outlined">add</span>
+            </a>
+            <a class="btn btn-outline-primary" id="export-csv">Export CSV</a>
+        </div>
     </div>
 </div>
+
+<script src="/public/js/dashboard.js"></script>

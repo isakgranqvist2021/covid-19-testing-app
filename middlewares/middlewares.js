@@ -9,11 +9,15 @@ export function alerts(req, res, next) {
 }
 
 export function logged_in(req, res, next) {
+    console.log(req.session.uid);
+
     if (!req.session.uid) return res.redirect("/");
     return next();
 }
 
 export function logged_out(req, res, next) {
+    console.log(req.session.uid);
+
     if (req.session.uid) return res.redirect("/admin/dashboard");
     return next();
 }

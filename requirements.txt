@@ -12,7 +12,6 @@ Current month data by test type (RDT vs PCR)
 
 We should be able to select data by the following criteria for export or to view stats:
 
-
 DATE X or DATE X to DATE Y
 MONTH (JANUARY, FEBUARY ETC)
 ENTITY’s FOR DATE, MONTH or YEAR.
@@ -27,7 +26,6 @@ CRUD Departments, Entities
 
 
 User (level 2)  {
-    create new database entries
     export data as csv
 }
 

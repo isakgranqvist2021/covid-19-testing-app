@@ -1,0 +1,98 @@
+<%- include('../partials/admin-nav') %>
+<div class="container mt-3 py-5">
+    <div class="col-12 col-md-8 m-auto">
+        <header class="mb-3">
+            <h1>Add New Test Manually</h1>
+        </header>
+        <% if(alert) { %>
+        <div class="alert alert-<%= alert.type %>" role="alert">
+            <%= alert.message %>
+        </div>
+        <%} %>
+
+        <form class="w-100" method="POST" action="/admin/add-test">
+            <section class="mb-3">
+                <label for="" class="form-label">Status</label>
+                <select class="form-control" name="status">
+                    <option value="pending">pending</option>
+                    <option value="positive">positive</option>
+                    <option value="negative">negative</option>
+                </select>
+            </section>
+            <section class="mb-3">
+                <label for="" class="form-label">Test Type</label>
+                <select class="form-control" name="type">
+                    <option value="RDT">RDT</option>
+                    <option value="PCR">PCR</option>
+                </select>
+            </section>
+
+            <section class="mb-3">
+                <label for="" class="form-label">Gender</label>
+                <select type="text" class="form-control" name="gender">
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select>
+            </section>
+            <div class="row">
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Entity</label>
+                    <select class="form-control" name="entity">
+                        <% entities.forEach(entity => { %>
+                        <option value="<%= entity %>"><%= entity %></option>
+                        <% }) %>
+                    </select>
+                </section>
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Department</label>
+                    <select class="form-control" name="department">
+                        <% departments.forEach(dep => { %>
+                        <option value="<%= dep %>"><%= dep %></option>
+                        <% }) %>
+                    </select>
+                </section>
+            </div>
+
+            <section class="mb-3">
+                <label for="" class="form-label">Name</label>
+                <input type="text" class="form-control" name="name" />
+            </section>
+            <div class="row">
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Email</label>
+                    <input type="text" class="form-control" name="email" />
+                </section>
+                <section class="mb-3 col-12 col-md-6">
+                    <label for="" class="form-label">Phone</label>
+                    <input type="text" class="form-control" name="phone" />
+                </section>
+            </div>
+
+            <section class="mb-3">
+                <label for="" class="form-label">Employee</label>
+                <input type="text" class="form-control" name="employee" />
+            </section>
+
+            <section class="mb-3 d-flex">
+                <div class="flex-grow-1 me-3">
+                    <label class="form-label" for="dd">Day (DD)</label>
+                    <input class="form-control" type="text" id="dd" name="dd" />
+                </div>
+                <div class="flex-grow-1 me-3">
+                    <label class="form-label" for="mm">Month (MM)</label>
+                    <input class="form-control" type="text" id="mm" name="mm" />
+                </div>
+                <div class="flex-grow-1">
+                    <label class="form-label" for="yyyy">Year (YYYY)</label>
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="yyyy"
+                        name="yyyy"
+                    />
+                </div>
+            </section>
+            <button class="btn btn-success d-block ms-auto">Submit Test</button>
+        </form>
+    </div>
+</div>

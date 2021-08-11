@@ -5,10 +5,15 @@ export async function get_login(req, res) {
 }
 
 export async function post_login(req, res) {
+    console.log("login");
+
     try {
         let user = await login(req.body);
 
         req.session.uid = user._id;
+
+        console.log(user);
+
         return res.redirect("/admin/dashboard");
     } catch (err) {
         console.log(err);
