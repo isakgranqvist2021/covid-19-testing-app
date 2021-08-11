@@ -1,11 +1,11 @@
-import { createTest } from "../../models/test"
-import fs from 'fs';
-import path from 'path';
+import { createTest } from "../../models/test";
+import fs from "fs";
+import path from "path";
 
 function genId(payload) {
-    let filePath = path.resolve('./data/store.json');
+    let filePath = path.resolve("./data/store.json");
     let file = JSON.parse(fs.readFileSync(filePath));
-    let fileN = file.tests
+    let fileN = file.tests;
 
     /*
         Also, A unique code should be generated for each person getting tested with the Following code generation points
@@ -14,24 +14,29 @@ function genId(payload) {
     */
 
     let parts = [
-        'AG',
-        payload.type.toUpperCase().substring(0, payload.type.toUpperCase().length - 1),
+        "AG",
+        payload.type
+            .toUpperCase()
+            .substring(0, payload.type.toUpperCase().length - 1),
         payload.month < 10 ? `0${payload.month}` : payload.month,
         payload.day < 10 ? `0${payload.day}` : payload.day,
         payload.year.toString(),
-        fileN.toString(8)
-    ]
+        fileN.toString(8),
+    ];
 
-    console.log(parts);
-    /*
-    fs.writeFileSync(filePath, JSON.stringify({
-        tests: file.tests + 1
-    }));*/
+    fs.writeFileSync(
+        filePath,
+        JSON.stringify({
+            tests: file.tests + 1,
+        })
+    );
 
-    return parts.join('');
+    return parts.join("");
 }
 
 export async function submit_test(req, res) {
+    console.log(req.body);
+
     let tid = (() => {
         let today = new Date();
 
@@ -39,7 +44,7 @@ export async function submit_test(req, res) {
             type: req.body.type,
             month: today.getMonth(),
             day: today.getDay(),
-            year: today.getFullYear()
+            year: today.getFullYear(),
         });
     })();
 
@@ -47,14 +52,17 @@ export async function submit_test(req, res) {
         const doc = await createTest({
             ...req.body,
             tid: tid,
-            dob: new Date(`${req.body.dd} ${req.body.mm} ${req.body.yyyy}`)       
+            dob: new Date(`${req.body.dd} ${req.body.mm} ${req.body.yyyy}`),
         });
 
-        return res.render('index/success', {
-            data: doc   
+        return res.render("index/success", {
+            data: {
+                value: "qwtqwt",
+            },
         });
-    } catch(err) {
-        console.log(err);
+    } catch (err) {
+        req.session.alert = { type: "danger", message: err };
+        req.session.formData = req.body;
         return res.redirect(req.headers.referer);
     }
 }

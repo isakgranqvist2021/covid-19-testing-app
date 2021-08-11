@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="/public/css/leave-test.min.css" />
 <div class="container">
     <div class="col-12 col-md-6 m-auto">
         <header class="mb-4">
@@ -5,15 +6,32 @@
             <p class="lead">Please fill out the form below and click submit</p>
         </header>
 
+        <% if(alert) { %>
+        <div class="alert alert-<%= alert.type %>" role="alert">
+            <%= alert.message %>
+        </div>
+        <%} %>
+
         <form method="POST" action="/test/submit">
-            <input type="hidden" name="type" value="pcr">
+            <input type="hidden" name="type" value="pcr" />
             <section class="mb-3">
                 <label class="form-label" for="name">Full name</label>
-                <input class="form-control" type="text" id="name" name="name">
+                <input
+                    class="form-control"
+                    type="text"
+                    id="name"
+                    name="name"
+                    value="<%= formData.name %>"
+                />
             </section>
             <section class="mb-3">
                 <label class="form-label" for="gender">Gender</label>
-                <select class="form-control" id="gender" name="gender">
+                <select
+                    class="form-control"
+                    id="gender"
+                    name="gender"
+                    value="<%= formData.gender %>"
+                >
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                 </select>
@@ -21,38 +39,107 @@
             <section class="mb-3 d-flex">
                 <div class="flex-grow-1 me-3">
                     <label class="form-label" for="dd">Day (DD)</label>
-                    <input class="form-control" type="text" id="dd" name="dd">
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="dd"
+                        name="dd"
+                        value="<%= formData.dd %>"
+                    />
                 </div>
                 <div class="flex-grow-1 me-3">
                     <label class="form-label" for="mm">Month (MM)</label>
-                    <input class="form-control" type="text" id="mm" name="mm">
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="mm"
+                        name="mm"
+                        value="<%= formData.mm %>"
+                    />
                 </div>
                 <div class="flex-grow-1 me-3">
                     <label class="form-label" for="yyyy">Year (YYYY)</label>
-                    <input class="form-control" type="text" id="yyyy" name="yyyy">
+                    <input
+                        class="form-control"
+                        type="text"
+                        id="yyyy"
+                        name="yyyy"
+                        value="<%= formData.yyyy %>"
+                    />
                 </div>
             </section>
-            <section class="mb-3"> 
-                <label class="form-label" for="phone">Whatsapp phone</label>
-                <input class="form-control" type="text" id="phone" name="phone">
-            </section>
             <section class="mb-3">
-                <label class="form-label" for="entity">Entity</label>
-                <input class="form-control" type="text" id="entity" name="entity">
+                <label class="form-label" for="phone">Whatsapp phone</label>
+                <input
+                    class="form-control"
+                    type="text"
+                    id="phone"
+                    name="phone"
+                    value="<%= formData.phone %>"
+                />
             </section>
+            <div class="row">
+                <div class="col-12 col-md-6">
+                    <section class="mb-3">
+                        <label class="form-label" for="entity">Entity</label>
+                        <select
+                            class="form-control"
+                            id="entity"
+                            name="entity"
+                            value="<%= formData.entity %>"
+                        >
+                            <% entities.forEach(entity => { %>
+                            <option value="<%= entity %>"><%= entity %></option>
+                            <% })%>
+                        </select>
+                    </section>
+                </div>
+                <div class="col-12 col-md-6">
+                    <section class="mb-3">
+                        <label class="form-label" for="department"
+                            >Department</label
+                        >
+                        <select
+                            class="form-control"
+                            id="department"
+                            name="department"
+                            value="<%= formData.department %>"
+                        >
+                            <% departments.forEach(department => { %>
+                            <option value="<%= department %>">
+                                <%= department %>
+                            </option>
+                            <% })%>
+                        </select>
+                    </section>
+                </div>
+            </div>
             <section class="mb-3">
                 <label class="form-label" for="employee">Employee</label>
-                <input class="form-control" type="text" id="employee" name="employee">
-            </section>           
-            <section class="mb-3">
-                <label class="form-label" for="department">Department</label>
-                <input class="form-control" type="text" id="department" name="department">
+                <input
+                    class="form-control"
+                    type="text"
+                    id="employee"
+                    name="employee"
+                    value="<%= formData.employee %>"
+                />
             </section>
             <section class="mb-3">
                 <label class="form-label" for="email">Email Address</label>
-                <input class="form-control" type="text" id="email" name="email">
+                <input
+                    class="form-control"
+                    type="text"
+                    id="email"
+                    name="email"
+                    value="<%= formData.email %>"
+                />
             </section>
-            <button class="btn btn-success">Submit Test</button>
+            <div class="d-flex">
+                <a href="/" class="btn btn-outline-primary">Go Back</a>
+                <button class="btn btn-success d-block ms-auto">
+                    Submit Test
+                </button>
+            </div>
         </form>
     </div>
 </div>

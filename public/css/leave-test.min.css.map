@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,UAAU,AAAC,CACP,OAAO,CAAE,oBAAoB,CAChC",
+    "sources": [
+        "../../assets/scss/pages/leave-test.scss"
+    ],
+    "names": [],
+    "file": "leave-test.min.css"
+}

@@ -1,7 +1,19 @@
+<link rel="stylesheet" href="/public/css/success.min.css" />
+
 <div class="container">
     <div class="col-12 col-md-6 m-auto">
         <div class="mb-3 d-flex justify-content-center">
-            <span class="material-icons-outlined shadow rounded-circle p-3 text-white bg-success">done</span>
+            <span
+                class="
+                    material-icons-outlined
+                    shadow
+                    rounded-circle
+                    p-3
+                    text-white
+                    bg-success
+                "
+                >done</span
+            >
         </div>
         <header class="text-center">
             <h1>Your test has been submitted</h1>
@@ -9,10 +21,17 @@
         </header>
         <div class="list-group">
             <% for(let k in data) { %>
-               <li class="list-group-item d-flex justify-content-between align-items-center">
-                    <span class="text-capitalize"><%= k %></span>
-                    <span class="text-capitalize"><%= data[k] %></span>
-               </li>
+            <li
+                class="
+                    list-group-item
+                    d-flex
+                    justify-content-between
+                    align-items-center
+                "
+            >
+                <span class="text-capitalize"><%= k %></span>
+                <span class="text-capitalize"><%= data[k] %></span>
+            </li>
             <% } %>
         </div>
         <p class="fw-bold mt-3 text-center">

@@ -8,7 +8,9 @@ main {
 }
 
 .direction-actions {
+    justify-content: center;
     a {
+        width: 100px;
         &:not(:last-of-type) {
             margin: 0 1rem 0 auto !important;
         }
