@@ -4,4 +4,23 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
+}
+
+.direction-actions {
+    a {
+        &:not(:last-of-type) {
+            margin: 0 1rem 0 auto !important;
+        }
+    }
+}
+
+@media (max-width: 745px) {
+    .direction-actions {
+        a {
+            &:not(:last-of-type) {
+                margin: 0 auto 1rem auto !important;
+            }
+        }
+    }
 }

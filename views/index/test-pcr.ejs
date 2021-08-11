@@ -1,1 +1,58 @@
-<h1>PCR Form</h1>
+<div class="container">
+    <div class="col-12 col-md-6 m-auto">
+        <header class="mb-4">
+            <h1>PCR Form</h1>
+            <p class="lead">Please fill out the form below and click submit</p>
+        </header>
+
+        <form method="POST" action="/test/submit">
+            <input type="hidden" name="type" value="pcr">
+            <section class="mb-3">
+                <label class="form-label" for="name">Full name</label>
+                <input class="form-control" type="text" id="name" name="name">
+            </section>
+            <section class="mb-3">
+                <label class="form-label" for="gender">Gender</label>
+                <select class="form-control" id="gender" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </section>
+            <section class="mb-3 d-flex">
+                <div class="flex-grow-1 me-3">
+                    <label class="form-label" for="dd">Day (DD)</label>
+                    <input class="form-control" type="text" id="dd" name="dd">
+                </div>
+                <div class="flex-grow-1 me-3">
+                    <label class="form-label" for="mm">Month (MM)</label>
+                    <input class="form-control" type="text" id="mm" name="mm">
+                </div>
+                <div class="flex-grow-1 me-3">
+                    <label class="form-label" for="yyyy">Year (YYYY)</label>
+                    <input class="form-control" type="text" id="yyyy" name="yyyy">
+                </div>
+            </section>
+            <section class="mb-3"> 
+                <label class="form-label" for="phone">Whatsapp phone</label>
+                <input class="form-control" type="text" id="phone" name="phone">
+            </section>
+            <section class="mb-3">
+                <label class="form-label" for="entity">Entity</label>
+                <input class="form-control" type="text" id="entity" name="entity">
+            </section>
+            <section class="mb-3">
+                <label class="form-label" for="employee">Employee</label>
+                <input class="form-control" type="text" id="employee" name="employee">
+            </section>           
+            <section class="mb-3">
+                <label class="form-label" for="department">Department</label>
+                <input class="form-control" type="text" id="department" name="department">
+            </section>
+            <section class="mb-3">
+                <label class="form-label" for="email">Email Address</label>
+                <input class="form-control" type="text" id="email" name="email">
+            </section>
+            <button class="btn btn-success">Submit Test</button>
+        </form>
+    </div>
+</div>

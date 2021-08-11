@@ -3,15 +3,11 @@ export function get_home(req, res) {
 }
 
 export function pick_test(req, res) {
-    if(req.params.test === 'rdt') {
-        return res.render('index/test-rdt', {
-
-        });
-    } else if(req.params.test === 'pcr') {
-        return res.render('index/test-pcr', {
-
-        });
-    } else {
-        return res.redirect('/')
+    if(!['rdt', 'pcr'].includes(req.params.test)) {
+        return res.redirect('/');
     }
+
+    return res.render('index/test-' + req.params.test, {
+
+    });
 }
