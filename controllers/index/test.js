@@ -35,8 +35,6 @@ function genId(payload) {
 }
 
 export async function submit_test(req, res) {
-    console.log(req.body);
-
     let tid = (() => {
         let today = new Date();
 
@@ -59,6 +57,8 @@ export async function submit_test(req, res) {
             data: doc,
         });
     } catch (err) {
+        console.log(err);
+
         req.session.alert = { type: "danger", message: err };
         req.session.formData = req.body;
         return res.redirect(req.headers.referer);

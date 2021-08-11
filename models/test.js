@@ -26,6 +26,8 @@ export async function createTest(data) {
         let newTest = await new TestModel(data).save();
         return await findTest({ _id: newTest._id });
     } catch (err) {
+        console.log(err);
+
         if (err.name === "ValidationError") {
             switch (Object.values(err.errors).map((val) => val.message)[0]) {
                 case 'Cast to date failed for value "Invalid Date" (type Date) at path "dob"':
@@ -46,7 +48,6 @@ export async function createTest(data) {
                     return Promise.reject("an error has occured");
             }
         } else {
-            console.log(err);
             return Promise.reject("an error has occured");
         }
     }
@@ -73,9 +74,14 @@ export async function findTest(filter) {
             entity: test.entity,
             phone: test.phone,
             department: test.department,
-            email: test.email !== null ? email : "not applicable",
+            email:
+                test.email !== null && test.email !== undefined
+                    ? test.email
+                    : "not applicable",
         });
     } catch (err) {
+        console.log(err);
+
         return Promise.reject("test not found");
     }
 }
@@ -99,6 +105,14 @@ export async function findAll() {
 export async function updateOne(filter, update) {
     try {
         return await TestModel.findOneAndUpdate(filter, update);
+    } catch (err) {
+        return Promise.reject("an error has occured");
+    }
+}
+
+export async function deleteOne(filter) {
+    try {
+        await TestModel.findOneAndDelete(filter);
     } catch (err) {
         return Promise.reject("an error has occured");
     }

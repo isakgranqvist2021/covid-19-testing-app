@@ -1,41 +1,38 @@
 <%- include('../partials/admin-nav') %>
 <div class="container mt-3 py-5">
-    <header class="mb-3">
-        <h1>
-            <%= test.name %>
-            <p class="lead"><%= test.tid %></p>
-        </h1>
-    </header>
-
-    <% if(alert) { %>
-    <div class="alert alert-<%= alert.type %>" role="alert">
-        <%= alert.message %>
-    </div>
-    <%} %>
-    <div class="col-12 col-md-8">
+    <div class="col-12 col-md-8 m-auto">
+        <header class="mb-3 ">
+            <h1>
+                <%= test.name %>
+                <p class="lead"><%= test.tid %></p>
+            </h1>
+        </header>
+        <% if(alert) { %>
+        <div class="alert alert-<%= alert.type %>" role="alert">
+            <%= alert.message %>
+        </div>
+        <%} %>
         <form class="w-100" method="POST" action="/admin/update-test">
             <section class="mb-3">
                 <label for="" class="form-label">Status</label>
                 <% if(user.accessLevel >= 1) { %>
                 <select
                     class="form-control"
-                    value="<%= test.status %>"
                     name="status"
                 >
-                    <option value="pending">pending</option>
-                    <option value="positive">positive</option>
-                    <option value="negative">negative</option>
+                    <option value="pending"  <%= test.status === "pending" ? "selected" : "" %> >pending</option>
+                    <option value="positive" <%= test.status === "positive" ? "selected" : "" %>>positive</option>
+                    <option value="negative" <%= test.status === "negative" ? "selected" : "" %>>negative</option>
                 </select>
                 <% } else { %>
                 <select
                     class="form-control"
-                    value="<%= test.status %>"
                     name="status"
                     disabled
                 >
-                    <option value="pending">pending</option>
-                    <option value="positive">positive</option>
-                    <option value="negative">negative</option>
+                    <option value="pending"  <%= test.status === "pending" ? "selected" : "" %> >pending</option>
+                    <option value="positive" <%= test.status === "positive" ? "selected" :"" %>>positive</option>
+                    <option value="negative" <%= test.status === "negative" ? "selected" :"" %>>negative</option>
                 </select>
                 <% }%>
             </section>
@@ -94,22 +91,22 @@
                     <select
                         type="text"
                         class="form-control"
-                        name="gender"
                         value="<%= test.gender %>"
+                        name="gender"
                     >
-                        <option>male</option>
-                        <option>female</option>
+                        <option value="male" <%= test.gender === "male" ? "selected" :"" %>>male</option>
+                        <option value="female" <%= test.gender === "female" ? "selected" :"" %>>female</option>
                     </select>
                     <% } else { %>
                     <select
                         type="text"
                         class="form-control"
-                        name="gender"
                         value="<%= test.gender %>"
+                        name="gender"
                         disabled
                     >
-                        <option>male</option>
-                        <option>female</option>
+                        <option value="male" <%= test.gender === "male" ? "selected" :"" %>>male</option>
+                        <option value="female" <%= test.gender === "female" ? "selected" :"" %>>female</option>
                     </select>
                     <% } %>
                 </section>
@@ -124,7 +121,7 @@
                         value="<%= test.entity %>"
                     >
                         <% entities.forEach(entity => { %>
-                        <option value="<%= entity %>"><%= entity %></option>
+                        <option value="<%= entity %>" <%= test.entity === entity ? "selected" :"" %>><%= entity %></option>
                         <% }) %>
                     </select>
                     <% } else { %>
@@ -135,7 +132,7 @@
                         disabled
                     >
                         <% entities.forEach(entity => { %>
-                        <option value="<%= entity %>"><%= entity %></option>
+                        <option value="<%= entity %>" <%= test.entity === entity ? "selected" :"" %>><%= entity %></option>
                         <% }) %></select
                     ><% } %>
                 </section>
@@ -148,7 +145,7 @@
                         value="<%= test.department %>"
                     >
                         <% departments.forEach(dep => { %>
-                        <option value="<%= dep %>"><%= dep %></option>
+                        <option value="<%= dep %>" <%= test.department === dep ? "selected" :"" %>><%= dep %></option>
                         <% }) %>
                     </select>
                     <% } else { %>
@@ -184,8 +181,7 @@
 
             <div class="d-flex">
                 <% if(user.accessLevel === 2) { %>
-                <a
-                    href="/admin/delete-test/<%= test._id %>"
+                <a onclick="if(confirm('Delete Test?')){window.location.href='/admin/delete-test/<%= test._id %>'}else{return false;};"
                     class="btn btn-outline-danger"
                     >Delete Test</a
                 >

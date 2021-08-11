@@ -1,4 +1,4 @@
-import { findOne, findAll, updateOne } from "../../models/test";
+import { findOne, findAll, updateOne, deleteOne } from "../../models/test";
 import { findUser } from "../../models/user";
 import moment from "moment";
 import path from "path";
@@ -56,6 +56,7 @@ export async function update_test(req, res) {
         };
         return res.redirect(req.headers.referer);
     }
+
     try {
         let test = await updateOne(
             { _id: req.body._id },
@@ -77,7 +78,23 @@ export async function update_test(req, res) {
 }
 
 export async function delete_test(req, res) {
+    let user = await findUser({ _id: req.session.uid });
+
+    if (user.accessLevel <= 0) {
+        req.session.alert = {
+            type: "danger",
+            message: "you do not have permission to do that",
+        };
+        return res.redirect(req.headers.referer);
+    }
+
     try {
+        await deleteOne({ _id: req.params.id });
+        req.session.alert = {
+            type: "success",
+            message: `test has been deleted`,
+        };
+        return res.redirect("/admin/dashboard");
     } catch (err) {
         req.session.alert = { type: "danger", message: "an error has occured" };
         return res.redirect(req.headers.referer);
