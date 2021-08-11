@@ -1,14 +1,9 @@
+import { register } from "../../models/user";
 import fs from "fs";
 import path from "path";
 
-import { register, login } from "../../models/user";
-
-export async function get_login(req, res) {
-    return res.render("admin/login", {});
-}
-
 export async function get_register(req, res) {
-    return res.render("admin/register", {});
+    return res.render("auth/register", {});
 }
 
 export async function post_register(req, res) {
@@ -33,21 +28,4 @@ export async function post_register(req, res) {
         req.session.alert = { type: "danger", message: "an error has occured" };
         return res.redirect(req.headers.referer);
     }
-}
-
-export async function post_login(req, res) {
-    try {
-        let user = await login(req.body);
-
-        req.session.uid = user._id;
-        return res.redirect("/admin/dashboard");
-    } catch (err) {
-        req.session.alert = { type: "danger", message: "an error has occured" };
-        return res.redirect(req.headers.referer);
-    }
-}
-
-export async function logout(req, res) {
-    delete req.session.uid;
-    return res.redirect("/admin/login");
 }

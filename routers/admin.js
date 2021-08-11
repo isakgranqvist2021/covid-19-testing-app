@@ -1,32 +1,18 @@
 import express from "express";
 const router = express.Router();
 
-import { logged_in, logged_out } from "../middlewares/middlewares";
+import logout from "../controllers/admin/logout";
+import get_dashboard from "../controllers/admin/dashboard";
+import view_test from "../controllers/admin/view-test";
+import update_test from "../controllers/admin/update-test";
+import delete_test from "../controllers/admin/delete-test";
+import add_test from "../controllers/admin/add-test";
 
-import {
-    get_dashboard,
-    view_test,
-    update_test,
-    delete_test,
-} from "../controllers/admin/dashboard";
-
-import {
-    get_login,
-    get_register,
-    post_login,
-    post_register,
-    logout,
-} from "../controllers/admin/auth";
-
-router.get("/login", logged_out, get_login);
-router.get("/register", logged_out, get_register);
-router.post("/login", logged_out, post_login);
-router.post("/register", logged_out, post_register);
-
-router.get("/logout", logged_in, logout);
-router.get("/dashboard", logged_in, get_dashboard);
-router.get("/view-test/:id", logged_in, view_test);
-router.post("/update-test", logged_in, update_test);
+router.get("/logout", logout);
+router.get("/dashboard", get_dashboard);
+router.get("/view-test/:id", view_test);
+router.post("/update-test", update_test);
 router.get("/delete-test/:id", delete_test);
+router.get("/add_test", add_test);
 
 export default router;

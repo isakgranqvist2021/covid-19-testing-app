@@ -34,12 +34,15 @@ app.use(
     })
 );
 
+import { logged_out, logged_in } from "./middlewares/middlewares";
 import index from "./routers/index";
+import auth from "./routers/auth";
 import admin from "./routers/admin";
 
 app.use("*", alerts, set_form_data);
 app.use("/", index);
-app.use("/admin", admin);
+app.use("/auth", logged_out, auth);
+app.use("/admin", logged_in, admin);
 
 app.listen(process.env.NODE_PORT, () => {
     console.log(`Server listening on port ${process.env.NODE_PORT}`);
