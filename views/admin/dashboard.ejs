@@ -74,6 +74,13 @@
     </div>
 
     <div class="row mt-5">
+        <div class="col-md-12 px-3">
+            <select id="graph-mode" class="form-control">
+                <option value="dd">Day</option>
+                <option value="ww">Week</option>
+                <option value="mm">Month</option>
+            </select>
+        </div>
         <div class="col-12 col-md-6 graph-holder">
             <div class="graph-container shadow rounded">
                 <canvas class="type-chart"></canvas>
@@ -100,6 +107,7 @@
     </div>
 </div>
 
+<script src="/public/js/libs/moment.min.js"></script>
 <script src="/public/js/dashboard.js"></script>
 <script src="/public/js/libs/chart.min.js"></script>
 <script src="/public/js/charts.js"></script>
