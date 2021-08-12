@@ -1,46 +1,62 @@
 <link rel="stylesheet" href="/public/css/dashboard.min.css" />
 
 <%- include('../partials/admin-nav') %>
-<div class="container mt-3">
-    <h1 class="my-4">Administration Dashboard</h1>
-
+<div class="container mt-3 m-auto py-5">
     <% if(alert) { %>
     <div class="alert alert-<%= alert.type %>" role="alert">
         <%= alert.message %>
     </div>
     <%} %>
 
-    <div class="col-md-12">
-        <h3>Tests</h3>
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Test ID</th>
-                    <th>Test Status</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                </tr>
-            </thead>
-            <tbody>
-                <% tests.forEach((test, i) => { %>
-                <tr data-tid="<%= test.tid %>">
-                    <td
-                        class="link"
-                        title="view test"
-                        onclick="window.location.pathname = '/admin/view-test/<%= test._id %>'"
-                    >
-                        <%= i + 1 %>
-                    </td>
-                    <td><%= test.tid %></td>
-                    <td><%= test.status %></td>
-                    <td><%= test.name %></td>
-                    <td><%= test.type %></td>
-                </tr>
-                <% }) %>
-            </tbody>
-        </table>
-        <div class="d-flex">
+    <div class="col-md-12 m-auto">
+        <header class="mb-3">
+            <h1>Tests</h1>
+            <p
+                style="
+                    font-size: 0.85rem;
+                    letter-spacing: 1.1px;
+                    color: #0d6efd;
+                    font-weight: 500;
+                "
+            >
+                Click on the number in the left column to inspect a specific row
+                in the table. (#)
+            </p>
+        </header>
+        <div class="table-container mb-3">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Test ID</th>
+                        <th>Date</th>
+                        <th>Test Status</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% tests.forEach((test, i) => { %>
+                    <tr data-tid="<%= test.tid %>">
+                        <td
+                            class="link"
+                            title="view test"
+                            onclick="window.location.pathname = '/admin/view-test/<%= test._id %>'"
+                        >
+                            <%= i + 1 %>
+                        </td>
+                        <td><%= test.tid %></td>
+                        <td><%= test.createdAt %></td>
+                        <td><%= test.status %></td>
+                        <td><%= test.name %></td>
+                        <td><%= test.type %></td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <% if(user.accessLevel >= 1) { %>
+        <div class="d-flex flex-wrap">
             <a
                 href="/admin/add-test"
                 class="btn btn-outline-primary d-flex align-items-center me-3"
@@ -54,6 +70,7 @@
                 Export To CSV
             </button>
         </div>
+        <% } %>
     </div>
 </div>
 

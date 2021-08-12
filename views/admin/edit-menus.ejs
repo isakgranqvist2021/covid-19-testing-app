@@ -1,4 +1,114 @@
 <%- include('../partials/admin-nav') %>
-<div class="container mt-3">
-    <h1>Edit Menus</h1>
+<div class="container mt-3 py-5">
+    <header class="mb-4">
+        <h1>Edit Menus</h1>
+    </header>
+
+    <% if(alert) { %>
+    <div class="alert alert-<%= alert.type %>" role="alert">
+        <%= alert.message %>
+    </div>
+    <%} %>
+
+    <div class="row">
+        <div class="col-12 col-md-6 mb-4">
+            <h3 class="mb-3">Entities</h3>
+            <ul class="list-group">
+                <% entities.forEach((entity, i) => { %>
+                <li
+                    class="
+                        list-group-item
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                    "
+                >
+                    <p
+                        class="
+                            mb-0
+                            d-flex
+                            align-items-center
+                            justify-content-between
+                        "
+                    >
+                        <%= entity %>
+                    </p>
+                    <a
+                        href="/admin/remove-from-menu/entities/<%= i %>"
+                        class="
+                            btn btn-outline-danger
+                            d-flex
+                            align-items-center
+                            justify-content-between
+                        "
+                    >
+                        <span class="material-icons-outlined">delete</span>
+                    </a>
+                </li>
+                <% }) %>
+            </ul>
+            <% if(user.accessLevel >= 2) { %>
+            <form
+                class="mt-3"
+                method="POST"
+                action="/admin/edit-menus/entities"
+            >
+                <div class="d-flex">
+                    <input type="text" class="form-control me-3" name="item" />
+                    <button class="btn btn-success">Add</button>
+                </div>
+            </form>
+            <% } %>
+        </div>
+        <div class="col-12 col-md-6 mb-4">
+            <h3 class="mb-3">Departments</h3>
+            <ul class="list-group">
+                <% departments.forEach((department, i) => { %>
+                <li
+                    class="
+                        list-group-item
+                        d-flex
+                        align-items-center
+                        justify-content-between
+                    "
+                >
+                    <p
+                        class="
+                            mb-0
+                            d-flex
+                            align-items-center
+                            justify-content-between
+                        "
+                    >
+                        <%= department %>
+                    </p>
+                    <a
+                        href="/admin/remove-from-menu/departments/<%= i %>"
+                        class="
+                            btn btn-outline-danger
+                            d-flex
+                            align-items-center
+                            justify-content-between
+                        "
+                    >
+                        <span class="material-icons-outlined">delete</span>
+                    </a>
+                </li>
+                <% }) %>
+            </ul>
+
+            <% if(user.accessLevel >= 2) { %>
+            <form
+                class="mt-3"
+                method="POST"
+                action="/admin/edit-menus/departments"
+            >
+                <div class="d-flex">
+                    <input type="text" class="form-control me-3" name="item" />
+                    <button class="btn btn-success">Add</button>
+                </div>
+            </form>
+            <% } %>
+        </div>
+    </div>
 </div>

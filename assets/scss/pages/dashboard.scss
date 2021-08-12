@@ -1,3 +1,14 @@
+td,
+th {
+    white-space: nowrap;
+}
+
+.table-container {
+    max-width: 100%;
+    overflow: auto;
+    max-height: 50vh;
+}
+
 table {
     tbody {
         tr {

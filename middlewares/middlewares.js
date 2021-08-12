@@ -46,7 +46,7 @@ export function set_form_data(req, res, next) {
             phone: "",
             entity: entities[0],
             department: departments[0],
-            employee: "",
+            employmentStatus: "",
             email: "",
         };
     }

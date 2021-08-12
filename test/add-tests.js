@@ -52,7 +52,7 @@ export function testData(includeEmail) {
         phone: faker.phone.phoneNumber(),
         department: deps[Math.floor(Math.random() * deps.length)],
         entity: entities[Math.floor(Math.random() * entities.length)],
-        employee: faker.company.catchPhrase(),
+        employmentStatus: faker.company.catchPhrase(),
     };
 
     if (includeEmail) {

@@ -69,8 +69,10 @@ function handleClick(btn) {
 
 (function () {
     let btn = document.getElementById("export-csv");
-    btn.style.display = "none";
-    setupRows(btn);
-    handleClick(btn);
-    selectAll(btn);
+    if (btn !== null && btn !== undefined) {
+        btn.style.display = "none";
+        setupRows(btn);
+        handleClick(btn);
+        selectAll(btn);
+    }
 })();

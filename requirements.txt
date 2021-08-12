@@ -18,15 +18,4 @@ ENTITY’s FOR DATE, MONTH or YEAR.
 STATUS for DATE, MONTH or YEAR.
 TEST TYPE for DATE, MONTH or YEAR.
 
-
-Should be able to export selected data to csv in this format.
-DATE,TEST TYPE,NAME,PHONE,GENDER,ENTITY,EMPLOYMENT STATUS(EMPLOYEE or VENDOR),DEPARTMENT,REMARK,STATUS
-
-CRUD Departments, Entities
-
-
-User (level 2)  {
-    export data as csv
-}
-
 WHATSAPP - inform user of test results

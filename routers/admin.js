@@ -10,7 +10,8 @@ import export_csv from "../controllers/admin/export-csv";
 import { add_test, submit_test_admin } from "../controllers/admin/add-test";
 import {
     get_edit_menus,
-    post_edit_menus,
+    add_to_menu,
+    remove_from_menu,
 } from "../controllers/admin/edit-menus";
 
 router.get("/logout", logout);
@@ -22,6 +23,7 @@ router.get("/add-test", add_test);
 router.post("/add-test", submit_test_admin);
 router.post("/export-csv", export_csv);
 router.get("/edit-menus", get_edit_menus);
-router.post("/edit-menus", post_edit_menus);
+router.post("/edit-menus/:menu", add_to_menu);
+router.get("/remove-from-menu/:menu/:index", remove_from_menu);
 
 export default router;

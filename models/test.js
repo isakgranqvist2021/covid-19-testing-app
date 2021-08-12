@@ -13,7 +13,7 @@ const testSchema = new Schema({
     dob: { type: Date, required: true },
     phone: { type: String, required: true },
     entity: { type: String, required: true },
-    employee: { type: String, required: true },
+    employmentStatus: { type: String, required: true },
     department: { type: String, required: true },
     email: { type: String, required: false, default: null },
     status: { type: String, default: "pending" }, // pending, positive, negative
@@ -40,8 +40,8 @@ export async function createTest(data) {
                     return Promise.reject("missing phone");
                 case "Path `entity` is required.":
                     return Promise.reject("missing entity");
-                case "Path `employee` is required.":
-                    return Promise.reject("missing employee");
+                case "Path `employmentStatus` is required.":
+                    return Promise.reject("missing employment status");
                 case "Path `department` is required.":
                     return Promise.reject("missing department");
                 default:
@@ -70,7 +70,7 @@ export async function findTest(filter) {
             name: test.name,
             gender: test.gender,
             "date of birth": moment(test.dob).format("DD/MM/YYYY"),
-            employee: test.employee,
+            employmentStatus: test.employmentStatus,
             entity: test.entity,
             phone: test.phone,
             department: test.department,
