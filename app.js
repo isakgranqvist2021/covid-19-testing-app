@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import expressLayouts from "express-ejs-layouts";
 import session from "express-session";
 import MongoStore from "connect-mongo";
-import { connect, disconnect } from "./utils/database";
-import { alerts, set_form_data } from "./middlewares/middlewares";
+import { connect } from "./utils/database";
+import { logs, alerts, set_form_data } from "./middlewares/middlewares";
 
 connect();
 
@@ -18,6 +18,7 @@ app.use(
 );
 app.use(express.json());
 app.use("/public", express.static("./public"));
+app.use("/files", express.static("./files"));
 app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.use(
@@ -39,7 +40,7 @@ import index from "./routers/index";
 import auth from "./routers/auth";
 import admin from "./routers/admin";
 
-app.use("*", alerts, set_form_data);
+app.use("*", logs, alerts, set_form_data);
 app.use("/", index);
 app.use("/auth", logged_out, auth);
 app.use("/admin", logged_in, admin);

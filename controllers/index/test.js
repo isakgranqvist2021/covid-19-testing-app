@@ -7,12 +7,6 @@ function genId(payload) {
     let file = JSON.parse(fs.readFileSync(filePath));
     let fileN = file.tests;
 
-    /*
-        Also, A unique code should be generated for each person getting tested with the Following code generation points
-        AG+RD+Month+day+year+5digitnumber that will be counting upwards from 00500. (EG AGRD08092100500)
-        AG+PC+Month+day+year+5digitnumber that will be counting upwards from 00500. (EG AGPC08092100501)
-    */
-
     let parts = [
         "AG",
         payload.type
@@ -35,16 +29,14 @@ function genId(payload) {
 }
 
 export async function submit_test(req, res) {
-    let tid = (() => {
-        let today = new Date();
+    let today = new Date();
 
-        return genId({
-            type: req.body.type,
-            month: today.getMonth(),
-            day: today.getDay(),
-            year: today.getFullYear(),
-        });
-    })();
+    let tid = genId({
+        type: req.body.type,
+        month: today.getMonth(),
+        day: today.getDay(),
+        year: today.getFullYear(),
+    });
 
     try {
         const doc = await createTest({
@@ -66,8 +58,6 @@ export async function submit_test(req, res) {
             return res.redirect("/admin/dashboard");
         }
     } catch (err) {
-        console.log(err);
-
         req.session.alert = { type: "danger", message: err };
         req.session.formData = req.body;
         return res.redirect(req.headers.referer);

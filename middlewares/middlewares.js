@@ -1,6 +1,12 @@
 import fs from "fs";
 import path from "path";
 
+export function logs(req, res, next) {
+    console.log(req.method, req.originalUrl);
+
+    return next();
+}
+
 export function alerts(req, res, next) {
     let alert = req.session.alert;
     res.locals.alert = alert;

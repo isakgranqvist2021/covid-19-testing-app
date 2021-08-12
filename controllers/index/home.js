@@ -1,5 +1,8 @@
 import fs from "fs";
 import path from "path";
+import { testData } from "../../test/add-tests";
+import dotenv from "dotenv";
+dotenv.config();
 
 export function get_home(req, res) {
     return res.render("index/home", {});
@@ -24,6 +27,10 @@ export function pick_test(req, res) {
     return res.render("index/test-" + req.params.test, {
         entities,
         departments,
-        formData: prevForm,
+        test: process.env.NODE_ENV === "development",
+        formData:
+            process.env.NODE_ENV !== "development"
+                ? prevForm
+                : testData(req.params.test === "pcr" ? true : false),
     });
 }
