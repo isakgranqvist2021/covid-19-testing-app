@@ -25,3 +25,15 @@ table {
         }
     }
 }
+
+.graph-holder {
+    padding: 1rem;
+    .graph-container {
+        padding: 1rem;
+        canvas {
+            object-fit: contain;
+            width: 100%;
+            min-height: 400px;
+        }
+    }
+}

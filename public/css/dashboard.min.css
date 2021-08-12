@@ -1,2 +1,2 @@
-td,th{white-space:nowrap}.table-container{max-width:100%;overflow:auto;max-height:50vh}table tbody tr{cursor:pointer}table tbody tr.selected{background-color:rgba(223,223,223,0.603)}table tbody tr .link:hover{background-color:#f1f1f1;cursor:pointer}
+td,th{white-space:nowrap}.table-container{max-width:100%;overflow:auto;max-height:50vh}table tbody tr{cursor:pointer}table tbody tr.selected{background-color:rgba(223,223,223,0.603)}table tbody tr .link:hover{background-color:#f1f1f1;cursor:pointer}.graph-holder{padding:1rem}.graph-holder .graph-container{padding:1rem}.graph-holder .graph-container canvas{-o-object-fit:contain;object-fit:contain;width:100%;min-height:400px}
 /*# sourceMappingURL=dashboard.min.css.map */

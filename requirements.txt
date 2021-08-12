@@ -1,17 +1,8 @@
 Statistic Views with Charts or Graphs:
 
-Current DAY total (RDT VS PCR)
-7 days total (RDT VS PCR)
-Current Month Total (RDT VS PCR)
 
-Sub statistics Views with Charts or Graphs
-Current Month data by entities (Entity A Vs Entity B Vs Entity C vs etc.)
-Current month data by Status (Positive vs Negative)
-Current month data by employment status. (Employee vs vendors/Guests)
-Current month data by test type (RDT vs PCR)
 
 We should be able to select data by the following criteria for export or to view stats:
-
 DATE X or DATE X to DATE Y
 MONTH (JANUARY, FEBUARY ETC)
 ENTITY’s FOR DATE, MONTH or YEAR.
