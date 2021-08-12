@@ -36,10 +36,13 @@ export default async function export_csv(req, res) {
             tests.map((test) => {
                 let d = test._doc;
                 return {
-                    DATE: test.createdAt,
-                    "TEST TYPE": test.type,
-                    NAME, "",
-                    PHONE: 
+                    DATE: d.createdAt,
+                    "TEST TYPE": d.type,
+                    NAME: d.name,
+                    PHONE: d.phone,
+                    "EMPLOYMENT STATUS": d.employmentStatus,
+                    DEPARTMENT: d.department,
+                    STATUS: d.status,
                 };
             })
         );
