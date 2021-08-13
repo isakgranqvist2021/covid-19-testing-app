@@ -94,9 +94,9 @@ export async function findOne(filter) {
     }
 }
 
-export async function findAll() {
+export async function findAll(query = {}) {
     try {
-        return await TestModel.find({});
+        return await TestModel.find(query);
     } catch (err) {
         return Promise.reject("an error has occured");
     }

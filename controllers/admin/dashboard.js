@@ -4,8 +4,60 @@ import moment from "moment";
 import fs from "fs";
 import path from "path";
 
+function constructQuery(filters) {
+    let query = {};
+
+    console.log(filters);
+
+    let dateRange = {
+        $gte: new Date("1970, 7, 14"),
+        $lte: new Date("2030, 7, 14"),
+    };
+
+    if (filters.from) {
+        dateRange.$gte = filters.from;
+    }
+
+    if (filters.to) {
+        dateRange.$lte = filters.to;
+    }
+
+    if (filters.status !== undefined && filters.status !== "all") {
+        query.status = filters.status;
+    }
+
+    if (filters.type !== undefined && filters.type !== "all") {
+        query.type = filters.type.toUpperCase();
+    }
+
+    if (filters.entity !== undefined && filters.entity !== "all") {
+        query.entity = filters.entity;
+    }
+
+    return {
+        ...query,
+        createdAt: dateRange,
+    };
+}
+
+function defaultFilters() {
+    return {
+        from: "",
+        to: "",
+        status: "all",
+        type: "all",
+        entity: "all",
+    };
+}
+
 export async function get_dashboard(req, res) {
-    let tests = await findAll();
+    let query = constructQuery(
+        req.query !== undefined ? req.query : defaultFilters()
+    );
+
+    console.log(query);
+
+    let tests = await findAll(query);
     let user = await findUser({ _id: req.session.uid });
     let entities = JSON.parse(
         fs.readFileSync(path.resolve("./data/entities.json"))
@@ -14,12 +66,7 @@ export async function get_dashboard(req, res) {
     return res.render("admin/dashboard", {
         entities,
         filters: {
-            from: "",
-            to: "",
-            mm: "all",
-            status: "all",
-            type: "all",
-            entity: "all",
+            ...defaultFilters(),
             ...req.query,
         },
         tests: tests.map((test) => {
@@ -33,15 +80,11 @@ export async function get_dashboard(req, res) {
 }
 
 export function post_dashboard_filter(req, res) {
-    console.log(req.body);
     let redirectUrl = ["/admin/dashboard?"];
 
     if (req.body.from) redirectUrl.push(`from=${req.body.from}`);
 
     if (req.body.to) redirectUrl.push(`to=${req.body.to}`);
-
-    if (req.body.mm && req.body.mm !== "all")
-        redirectUrl.push(`mm=${req.body.mm}`);
 
     if (req.body.status && req.body.status !== "all")
         redirectUrl.push(`status=${req.body.status}`);
