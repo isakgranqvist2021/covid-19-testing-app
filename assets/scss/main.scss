@@ -2,6 +2,17 @@ main {
     padding-bottom: 200px;
 }
 
+.company-logo {
+    padding: 50px 0;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+
+    img {
+        height: 50px;
+    }
+}
+
 .contact-details {
     background-color: #0a58ca;
     position: fixed;
