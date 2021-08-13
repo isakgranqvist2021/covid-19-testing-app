@@ -1,2 +1,2 @@
-.contact-details{padding-top:50px;padding-bottom:25px}.contact-details p{font-weight:bold;color:#3d3d3d;letter-spacing:1.15px;font-size:0.83rem}
+main{padding-bottom:200px}.contact-details{background-color:#0a58ca;position:fixed;bottom:0;width:100%;padding:1rem;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center}.contact-details p{font-weight:500;color:#fff;letter-spacing:1.15px;font-size:0.83rem;margin-bottom:0;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-align:center;-ms-flex-align:center;align-items:center}.contact-details p span{margin-right:0.5rem;font-size:1rem}.contact-details p:not(:last-of-type)::after{content:"";margin:0 2rem}
 /*# sourceMappingURL=main.min.css.map */

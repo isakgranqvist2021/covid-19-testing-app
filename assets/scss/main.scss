@@ -1,10 +1,35 @@
+main {
+    padding-bottom: 200px;
+}
+
 .contact-details {
-    padding-top: 50px;
-    padding-bottom: 25px;
+    background-color: #0a58ca;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+
     p {
-        font-weight: bold;
-        color: rgb(61, 61, 61);
+        font-weight: 500;
+        color: rgb(255, 255, 255);
         letter-spacing: 1.15px;
         font-size: 0.83rem;
+        margin-bottom: 0;
+        display: flex;
+        align-items: center;
+
+        span {
+            margin-right: 0.5rem;
+            font-size: 1rem;
+        }
+
+        &:not(:last-of-type) {
+            &::after {
+                content: "";
+                margin: 0 2rem;
+            }
+        }
     }
 }
