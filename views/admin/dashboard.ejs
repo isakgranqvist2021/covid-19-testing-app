@@ -9,20 +9,107 @@
     <%} %>
 
     <div class="col-md-12 m-auto">
-        <header class="mb-3">
-            <h1>Tests</h1>
-            <p
-                style="
-                    font-size: 0.85rem;
-                    letter-spacing: 1.1px;
-                    color: #0d6efd;
-                    font-weight: 500;
-                "
-            >
-                Click on the number in the left column to inspect a specific row
-                in the table. (#)
-            </p>
+        <header
+            class="
+                mb-3
+                d-flex
+                align-items-end
+                justify-content-between
+                flex-wrap
+            "
+        >
+            <div>
+                <h1>Tests</h1>
+                <p class="mb-3 desc-p">
+                    Click on the number in the left column to inspect a specific
+                    row in the table. (#)
+                </p>
+            </div>
+
+            <div class="d-flex mb-3">
+                <a
+                    href="/admin/add-test"
+                    class="
+                        btn btn-outline-primary
+                        d-flex
+                        align-items-center
+                        me-3
+                    "
+                    >Add Test
+                    <span class="material-icons-outlined ms-1">add</span>
+                </a>
+            </div>
         </header>
+        <% if(user.accessLevel >= 1) { %>
+        <div class="table-actions mb-3 rounded">
+            <form>
+                <div class="d-flex align-items-end flex-wrap">
+                    <section class="me-3 mb-3 flex-grow-1">
+                        <label class="form-label">From</label>
+                        <input type="date" class="form-control" />
+                    </section>
+                    <section class="me-3 mb-3 flex-grow-1">
+                        <label class="form-label">To</label>
+                        <input type="date" class="form-control" />
+                    </section>
+                    <section class="me-3 mb-3 flex-grow-1">
+                        <label class="form-label">Month</label>
+                        <select name="" id="" class="form-control">
+                            <option value="">January</option>
+                            <option value="">February</option>
+                            <option value="">March</option>
+                            <option value="">April</option>
+                            <option value="">May</option>
+                            <option value="">June</option>
+                            <option value="">July</option>
+                            <option value="">August</option>
+                            <option value="">September</option>
+                            <option value="">October</option>
+                            <option value="">November</option>
+                            <option value="">December</option>
+                        </select>
+                    </section>
+                    <section class="me-3 mb-3 flex-grow-1">
+                        <label class="form-label">Status</label>
+                        <select name="" id="" class="form-control">
+                            <option value="">Pending</option>
+                            <option value="">Negative</option>
+                            <option value="">Positive</option>
+                        </select>
+                    </section>
+                    <section class="me-3 mb-3 flex-grow-1">
+                        <label class="form-label">Test Type</label>
+                        <select name="" id="" class="form-control">
+                            <option value="">RDT</option>
+                            <option value="">PCR</option>
+                        </select>
+                    </section>
+                    <section class="me-3 mb-3 flex-grow-1">
+                        <label class="form-label">Entity</label>
+                        <select name="" id="" class="form-control">
+                            <% entities.forEach(entity => { %>
+                            <option value="<%= entity %>"><%= entity %></option>
+                            <% }) %>
+                        </select>
+                    </section>
+                    <button
+                        class="btn btn-primary mb-3 me-3 flex-grow-1"
+                        type="button"
+                    >
+                        Select
+                    </button>
+                </div>
+            </form>
+            <div class="d-flex mb-3 mt-5">
+                <button class="btn btn-primary me-3" id="select-all">
+                    Select All
+                </button>
+                <button class="btn btn-outline-primary" id="export-csv">
+                    Export To CSV
+                </button>
+            </div>
+        </div>
+        <% } %>
         <div class="table-container mb-3">
             <table class="table table-bordered">
                 <thead>
@@ -55,22 +142,6 @@
                 </tbody>
             </table>
         </div>
-        <% if(user.accessLevel >= 1) { %>
-        <div class="d-flex flex-wrap">
-            <a
-                href="/admin/add-test"
-                class="btn btn-outline-primary d-flex align-items-center me-3"
-            >
-                <span class="material-icons-outlined">add</span>
-            </a>
-            <button class="btn btn-primary me-3" id="select-all">
-                Select All
-            </button>
-            <button class="btn btn-outline-primary" id="export-csv">
-                Export To CSV
-            </button>
-        </div>
-        <% } %>
     </div>
 
     <div class="col-12 col-md-4 mt-5">

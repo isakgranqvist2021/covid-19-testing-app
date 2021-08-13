@@ -1,78 +1,75 @@
-let ids = [];
+let rows = document.querySelectorAll("tbody tr");
+let selectAllBtn = document.getElementById("select-all");
+let exportBtn = document.getElementById("export-csv");
 let rowsSelected = false;
+let ids = [];
 
-function toggleRow(row, btn) {
-    let tid = row.getAttribute("data-tid");
-
-    if (row.classList.contains("selected")) {
+function selectRow(row) {
+    if (!row.classList.contains("selected")) {
+        row.classList.add("selected");
+        ids.push(row.getAttribute("data-tid"));
+    } else {
         row.classList.remove("selected");
         ids.splice(
-            ids.findIndex((id) => id === tid),
+            ids.findIndex((id) => id === row.getAttribute("data-tid")),
             1
         );
-    } else {
-        row.classList.add("selected");
-        ids.push(tid);
     }
 
-    if (ids.length > 0) {
-        btn.style.display = "block";
-        btn.textContent = `Export To CSV (${ids.length})`;
-    } else {
-        btn.style.display = "none";
-    }
+    exportBtn.textContent = `Export To CSV (${ids.length})`;
 }
 
-function setupRows(btn) {
-    let rows = document.querySelectorAll("tbody tr");
-
+function selectRows() {
+    selectAllBtn.textContent = "Unselect All";
+    rowsSelected = true;
     rows.forEach((row) => {
-        row.addEventListener("click", (e) => toggleRow(row, btn));
+        row.classList.add("selected");
+        ids.push(row.getAttribute("data-tid"));
     });
+    exportBtn.textContent = `Export To CSV (${ids.length})`;
 }
 
-function selectAll(btn) {
-    let rows = document.querySelectorAll("tbody tr");
-    let sAll = document.getElementById("select-all");
-    sAll.addEventListener("click", (e) => {
-        if (!rowsSelected) {
-            rowsSelected = true;
-            sAll.textContent = "Unselect All";
-        } else {
-            rowsSelected = false;
-            sAll.textContent = "Select All";
-        }
-
-        rows.forEach((row) => toggleRow(row, btn));
-    });
+function unSelectRows() {
+    selectAllBtn.textContent = "Select All";
+    rowsSelected = false;
+    rows.forEach((row) => row.classList.remove("selected"));
+    ids = [];
+    exportBtn.textContent = "Export To CSV";
 }
 
-function handleClick(btn) {
-    btn.addEventListener("click", async (e) => {
-        const response = await fetch("/admin/export-csv", {
-            method: "POST",
-            body: JSON.stringify(ids),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        }).then((res) => res.json());
+async function submitForExport() {
+    if (ids.length <= 0) return alert("no data selected");
+    console.log(ids);
+    // const response = await fetch("/admin/export-csv", {
+    //     method: "POST",
+    //     body: JSON.stringify(ids),
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //     },
+    // }).then((res) => res.json());
 
-        console.log(response.data);
-
-        if (response.success) {
-            window.open(response.data, "_blank").focus();
-        } else {
-            alert(response.message);
-        }
-    });
+    // if (response.success) {
+    //     window.open(response.data, "_blank").focus();
+    // } else {
+    //     alert(response.message);
+    // }
 }
 
-(function () {
-    let btn = document.getElementById("export-csv");
-    if (btn !== null && btn !== undefined) {
-        btn.style.display = "none";
-        setupRows(btn);
-        handleClick(btn);
-        selectAll(btn);
-    }
+(function init() {
+    selectAllBtn.addEventListener("click", () => {
+        if (!rowsSelected) return selectRows();
+        if (rowsSelected) return unSelectRows();
+    });
+
+    rows.forEach((row) => row.addEventListener("click", () => selectRow(row)));
+    exportBtn.addEventListener("click", () => submitForExport());
 })();
+
+/*
+    We should be able to select data by the following criteria for export or to view stats:
+    DATE X or DATE X
+    MONTH (JANUARY, FEBUARY ETC)
+    ENTITY’s FOR DATE, MONTH or YEAR.
+    STATUS for DATE, MONTH or YEAR.
+    TEST TYPE for DATE, MONTH or YEAR.
+*/
