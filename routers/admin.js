@@ -2,7 +2,6 @@ import express from "express";
 const router = express.Router();
 
 import logout from "../controllers/admin/logout";
-import get_dashboard from "../controllers/admin/dashboard";
 import view_test from "../controllers/admin/view-test";
 import update_test from "../controllers/admin/update-test";
 import delete_test from "../controllers/admin/delete-test";
@@ -14,9 +13,14 @@ import {
     add_to_menu,
     remove_from_menu,
 } from "../controllers/admin/edit-menus";
+import {
+    get_dashboard,
+    post_dashboard_filter,
+} from "../controllers/admin/dashboard";
 
 router.get("/logout", logout);
 router.get("/dashboard", get_dashboard);
+router.post("/dashboard/filter", post_dashboard_filter);
 router.get("/view-test/:id", view_test);
 router.post("/update-test", update_test);
 router.get("/delete-test/:id", delete_test);
