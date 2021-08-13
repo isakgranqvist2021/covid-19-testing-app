@@ -35,13 +35,16 @@ export default async function update_test(req, res) {
         };
 
         // send a what's app message to inform user of the results
+
+        console.log(process.env.TWILIO_NUMBER);
+
         client.messages
             .create({
                 from: `whatsapp:${process.env.TWILIO_NUMBER}`,
                 body: `Your test results: ${req.body.status}`,
                 to: "whatsapp:+46739986177",
             })
-            .then((message) => console.log(message.sid))
+            .then((message) => console.log(message))
             .catch((err) => console.log(err));
 
         return res.redirect("/admin/dashboard");
