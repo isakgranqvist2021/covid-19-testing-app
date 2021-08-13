@@ -1,12 +1,3 @@
-/*
-    Current DAY total (RDT VS PCR)
-    7 days total (RDT VS PCR)
-    Current Month Total (RDT VS PCR)
-
-    Current Month data by entities (Entity A Vs Entity B Vs Entity C vs etc.)
-    Current month data by employment status. (Employee vs vendors/Guests)
-*/
-
 import { findAll } from "../../models/test";
 
 function constructTypeData(rawData) {
@@ -41,7 +32,14 @@ function constructStatusData(rawData) {
 }
 
 function constructEmpStatusData(rawData) {
-    return {};
+    return {
+        employee: rawData.filter(
+            (test) => test.employmentStatus === "employee"
+        ),
+        vendors_guests: rawData.filter(
+            (test) => test.employmentStatus === "vendors_guests"
+        ),
+    };
 }
 
 export default async function graph_data(req, res) {

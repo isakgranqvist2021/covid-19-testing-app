@@ -70,7 +70,7 @@ export async function findTest(filter) {
             name: test.name,
             gender: test.gender,
             "date of birth": moment(test.dob).format("DD/MM/YYYY"),
-            employmentStatus: test.employmentStatus,
+            "employment status": test.employmentStatus.replace("_", " "),
             entity: test.entity,
             phone: test.phone,
             department: test.department,

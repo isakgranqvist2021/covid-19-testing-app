@@ -119,13 +119,15 @@
                 <label class="form-label" for="employmentStatus"
                     >Employment Status</label
                 >
-                <input
-                    class="form-control"
-                    type="text"
-                    id="employmentStatus"
+                <select
                     name="employmentStatus"
+                    id="employmentStatus"
+                    class="form-control"
                     value="<%= formData.employmentStatus %>"
-                />
+                >
+                    <option value="employee">Employee</option>
+                    <option value="vendors_guests">Vendors/Guests</option>
+                </select>
             </section>
             <div class="d-flex">
                 <a href="/" class="btn btn-outline-primary">Go Back</a>

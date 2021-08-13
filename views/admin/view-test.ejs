@@ -166,9 +166,16 @@
             </div>
             <section class="mb-3">
                 <label for="" class="form-label">Employment Status</label>
-                <input type="text" class="form-control" name="employmentStatus"
+                <select 
+                name="employmentStatus" 
+                id="" 
+                class="form-control" 
                 value="<%= test.employmentStatus %>" <%= user.accessLevel <= 1 ?
-                'disabled' : ''%> />
+                'disabled' : ''%> >
+                    <% ["employee", "vendors_guests"].forEach(st => { %>
+                        <option value="<%= st %>" <%= test.employmentStatus === st ? "selected" :"" %>><%= st %></option>
+                    <% }) %>
+                </select>
             </section>
             <section class="mb-3">
                 <label for="" class="form-label">Database Identifier</label>

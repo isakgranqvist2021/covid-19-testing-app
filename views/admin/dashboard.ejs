@@ -73,34 +73,40 @@
         <% } %>
     </div>
 
-    <div class="row mt-5">
-        <div class="col-md-12 px-3">
-            <select id="graph-mode" class="form-control">
-                <option value="dd">Day</option>
-                <option value="ww">Week</option>
-                <option value="mm">Month</option>
-            </select>
-        </div>
-        <div class="col-12 col-md-6 graph-holder">
-            <div class="graph-container shadow rounded">
+    <div class="col-12 col-md-4 mt-5">
+        <label for="" class="form-label">Filter Data By</label>
+        <select id="graph-mode" class="form-control">
+            <option value="dd">Day</option>
+            <option value="ww">Week</option>
+            <option value="mm">Month</option>
+        </select>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-lg-6 graph-holder">
+            <div class="graph-container shadow-sm rounded">
+                <h3>Test Type</h3>
                 <canvas class="type-chart"></canvas>
             </div>
         </div>
-        <div class="col-12 col-md-6 graph-holder">
-            <div class="graph-container shadow rounded">
+        <div class="col-12 col-lg-6 graph-holder">
+            <div class="graph-container shadow-sm rounded">
+                <h3>Entities Status</h3>
                 <canvas class="entities-chart"></canvas>
             </div>
         </div>
     </div>
 
-    <div class="row mt-3 gx-5">
-        <div class="col-12 col-md-6 graph-holder">
-            <div class="graph-container shadow rounded">
+    <div class="row mt-3">
+        <div class="col-12 col-lg-6 graph-holder">
+            <div class="graph-container shadow-sm rounded">
+                <h3>Test Status</h3>
                 <canvas class="status-chart"></canvas>
             </div>
         </div>
-        <div class="col-12 col-md-6 graph-holder">
-            <div class="graph-container shadow rounded">
+        <div class="col-12 col-lg-6 graph-holder">
+            <div class="graph-container shadow-sm rounded">
+                <h3>Employement Status</h3>
                 <canvas class="employement-chart"></canvas>
             </div>
         </div>

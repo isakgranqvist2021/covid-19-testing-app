@@ -7,10 +7,18 @@
     Current month data by employment status. (Employee vs vendors/Guests)
 */
 
+function getRandomRgb() {
+    var num = Math.round(0xffffff * Math.random());
+    var r = num >> 16;
+    var g = (num >> 8) & 255;
+    var b = num & 255;
+    return "rgb(" + r + ", " + g + ", " + b + ")";
+}
+
 const getDays = (days) =>
-    [...new Array(days)].map((i, idx) =>
-        moment().startOf("day").subtract(idx, "days")
-    );
+    [...new Array(days)]
+        .map((i, idx) => moment().startOf("day").subtract(idx, "days"))
+        .reverse();
 
 function checkIfBtwn(rawData, days) {
     let values = [];
@@ -56,14 +64,8 @@ function convertData(rawData, mode, dataset) {
             ];
         } else if (dataset === "type") {
             return [
-                {
-                    label: "PCR",
-                    datapoints: checkIfBtwn(rawData.pcr, days),
-                },
-                {
-                    label: "RDT",
-                    datapoints: checkIfBtwn(rawData.rdt, days),
-                },
+                { label: "PCR", datapoints: checkIfBtwn(rawData.pcr, days) },
+                { label: "RDT", datapoints: checkIfBtwn(rawData.rdt, days) },
             ];
         } else if (dataset === "entities") {
             let n = 0;
@@ -87,15 +89,11 @@ function convertData(rawData, mode, dataset) {
             return [
                 {
                     label: "employee",
-                    datapoints: (() => {
-                        return [65, 59, 80, 81, 56, 55, 40];
-                    })(),
+                    datapoints: checkIfBtwn(rawData.employee, days),
                 },
                 {
                     label: "vendor/guest",
-                    datapoints: (() => {
-                        return [65, 59, 80, 81, 56, 55, 40];
-                    })(),
+                    datapoints: checkIfBtwn(rawData.vendors_guests, days),
                 },
             ];
         }
@@ -123,24 +121,24 @@ class CustomChart {
 
     getData() {
         let properties = {
-            borderWidth: 1,
+            borderWidth: 2,
             backgroundColor: [
-                "rgba(255, 99, 132, 0.2)",
-                "rgba(255, 159, 64, 0.2)",
-                "rgba(255, 205, 86, 0.2)",
-                "rgba(75, 192, 192, 0.2)",
-                "rgba(54, 162, 235, 0.2)",
-                "rgba(153, 102, 255, 0.2)",
-                "rgba(201, 203, 207, 0.2)",
+                "#0a58ca",
+                "#696969",
+                "#146c43",
+                "#a124a3",
+                "#d9344a",
+                "#baac29",
+                "#148e9c",
             ],
             borderColor: [
-                "rgb(255, 99, 132)",
-                "rgb(255, 159, 64)",
-                "rgb(255, 205, 86)",
-                "rgb(75, 192, 192)",
-                "rgb(54, 162, 235)",
-                "rgb(153, 102, 255)",
-                "rgb(201, 203, 207)",
+                "#1f6dde",
+                "#7d7d7d",
+                "#1d8a57",
+                "#c249c4",
+                "#e34d61",
+                "#d9ca3d",
+                "#1eb8c9",
             ],
         };
 
@@ -165,8 +163,8 @@ class CustomChart {
     }
 
     init() {
-        this.chart = new Chart(this.element, {
-            type: "bar",
+        let config = {
+            type: this.mode === "mm" ? "line" : "bar",
             data: {
                 labels: this.labels(),
                 datasets: this.getData(),
@@ -174,20 +172,24 @@ class CustomChart {
             options: {
                 responsive: true,
                 stacked: false,
+                plugins: {
+                    legend: {
+                        title: {
+                            text: this.label,
+                        },
+                    },
+                },
                 interaction: {
                     mode: "index",
                     intersect: false,
                 },
                 scales: {
                     y: { type: "linear", display: true, position: "left" },
-                    y1: {
-                        type: "linear",
-                        display: true,
-                        position: "right",
-                    },
                 },
             },
-        });
+        };
+
+        this.chart = new Chart(this.element, config);
     }
 }
 
@@ -198,8 +200,6 @@ async function init() {
             "Content-Type": "application/json",
         },
     }).then((res) => res.json());
-
-    console.log(res);
 
     if (res.success) {
         const charts = [

@@ -118,13 +118,15 @@
                 <label class="form-label" for="employmentStatus"
                     >Employment Status</label
                 >
-                <input
-                    class="form-control"
-                    type="text"
-                    id="employmentStatus"
+                <select
                     name="employmentStatus"
+                    id="employmentStatus"
+                    class="form-control"
                     value="<%= formData.employmentStatus %>"
-                />
+                >
+                    <option value="employee">Employee</option>
+                    <option value="vendors_guests">Vendors/Guests</option>
+                </select>
             </section>
             <section class="mb-3">
                 <label class="form-label" for="email">Email Address</label>
