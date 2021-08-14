@@ -36,14 +36,6 @@ export default async function update_test(req, res) {
         };
 
         // send a what's app message to inform user of the results
-
-        let p =
-            process.env.NODE_HOST === "development"
-                ? `:${process.env.NODE_PORT}`
-                : "";
-
-        let viewTestUrl = `${process.env.NODE_HOST}${p}/test/view/AGRD07042021164`;
-
         client.messages
             .create({
                 body: `
@@ -52,8 +44,8 @@ export default async function update_test(req, res) {
                 ).format("YYYY-MM-DD HH:mm:ss")} \nTest status: ${
                     req.body.status
                 }`,
-                from: "whatsapp:+14155238886",
-                to: "whatsapp:+46739986177",
+                from: `whatsapp:${process.env.TWILIO_NUMBER}`,
+                to: `whatsapp:${req.body.phone}`,
             })
             .then((message) => console.log(message))
             .done();
