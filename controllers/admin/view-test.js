@@ -5,6 +5,8 @@ import path from "path";
 import fs from "fs";
 
 export default async function view_test(req, res) {
+    req.session.referer = req.headers.referer;
+
     let test = await findOne({ _id: req.params.id });
     let user = await findUser({ _id: req.session.uid });
     let entities = JSON.parse(

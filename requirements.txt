@@ -1,12 +1,6 @@
-Statistic Views with Charts or Graphs:
-
-
-
-We should be able to select data by the following criteria for export or to view stats:
-DATE X or DATE X to DATE Y
-MONTH (JANUARY, FEBUARY ETC)
-ENTITY’s FOR DATE, MONTH or YEAR.
-STATUS for DATE, MONTH or YEAR.
-TEST TYPE for DATE, MONTH or YEAR.
-
 WHATSAPP - inform user of test results
+
+root@168.100.10.205
+530tEWEQ@RT)ea@92
+
+covid-cgroup.appaz.ng

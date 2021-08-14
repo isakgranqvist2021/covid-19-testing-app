@@ -2,6 +2,7 @@ import { updateOne } from "../../models/test";
 import { findUser } from "../../models/user";
 import dotenv from "dotenv";
 import twilio from "twilio";
+import moment from "moment";
 dotenv.config();
 
 const client = twilio(
@@ -43,18 +44,21 @@ export default async function update_test(req, res) {
 
         let viewTestUrl = `${process.env.NODE_HOST}${p}/test/view/AGRD07042021164`;
 
-        console.log(viewTestUrl);
-
         client.messages
             .create({
-                from: `whatsapp:${process.env.TWILIO_NUMBER}`,
-                body: `Your test results: ${req.body.status} - ${viewTestUrl}`,
+                body: `
+                Your ${req.body.type} test has been updated: ${moment(
+                    new Date()
+                ).format("YYYY-MM-DD HH:mm:ss")} \nTest status: ${
+                    req.body.status
+                }`,
+                from: "whatsapp:+14155238886",
                 to: "whatsapp:+46739986177",
             })
             .then((message) => console.log(message))
-            .catch((err) => console.log(err));
+            .done();
 
-        return res.redirect("/admin/dashboard");
+        return res.redirect(req.session.referer || "/admin/dashboard");
     } catch (err) {
         console.log(err);
         req.session.alert = { type: "danger", message: "an error has occured" };
