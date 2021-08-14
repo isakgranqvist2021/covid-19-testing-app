@@ -1,12 +1,18 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
-
+import { freshDate } from "../utils/helpers";
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
-    createdAt: { type: Date, default: new Date() },
+    createdAt: {
+        type: Date,
+        default: freshDate(),
+    },
     updatedAt: { type: Date, default: null },
-    lastLogin: { type: Date, default: new Date() },
+    lastLogin: {
+        type: Date,
+        default: freshDate(),
+    },
     username: { type: String, required: true, unique: true },
     email: { type: String, required: true },
     password: { type: String, required: true },

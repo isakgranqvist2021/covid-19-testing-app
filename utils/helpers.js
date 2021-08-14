@@ -1,3 +1,6 @@
+import moment from "moment";
+import momentTZ from "moment-timezone";
+
 export function randId(n = 15) {
     let runes =
         "QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm123456789_".split(
@@ -11,4 +14,9 @@ export function randId(n = 15) {
     }
 
     return str;
+}
+
+export function freshDate() {
+    let d = moment(new Date()).subtract(1, "hours");
+    return momentTZ.tz(d, "Europe/London");
 }

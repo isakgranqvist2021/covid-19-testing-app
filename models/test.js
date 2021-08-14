@@ -1,10 +1,14 @@
 import mongoose from "mongoose";
 import moment from "moment";
+import { freshDate } from "../utils/helpers";
 
 const Schema = mongoose.Schema;
 
 const testSchema = new Schema({
-    createdAt: { type: Date, default: new Date() },
+    createdAt: {
+        type: Date,
+        default: freshDate(),
+    },
     updatedAt: { type: Date, default: null },
     tid: { type: String, required: true },
     gender: { type: String, required: true },

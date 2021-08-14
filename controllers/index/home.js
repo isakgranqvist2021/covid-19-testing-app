@@ -1,6 +1,5 @@
 import fs from "fs";
 import path from "path";
-import { testData } from "../../test/add-tests";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -16,6 +15,7 @@ export function pick_test(req, res) {
     let entities = JSON.parse(
         fs.readFileSync(path.resolve("./data/entities.json"))
     );
+
     let departments = JSON.parse(
         fs.readFileSync(path.resolve("./data/departments.json"))
     );
@@ -28,9 +28,18 @@ export function pick_test(req, res) {
         entities,
         departments,
         test: process.env.NODE_ENV === "development",
-        formData:
-            process.env.NODE_ENV !== "development"
-                ? prevForm
-                : testData(req.params.test === "pcr" ? true : false),
+        formData: {
+            name: "",
+            gender: "male",
+            dd: "",
+            mm: "",
+            yyyy: "",
+            phone: "",
+            entity: entities[0],
+            department: departments[0],
+            employmentStatus: "",
+            email: "",
+            ...prevForm,
+        },
     });
 }

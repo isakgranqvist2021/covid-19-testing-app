@@ -186,8 +186,15 @@
                 <label for="" class="form-label">Date Of Birth</label>
                 <input type="text" class="form-control" name="dob" value="<%=
                 test.dob %>" <%= user.accessLevel <= 1 ? 'disabled' : ''%> />
+            </section>  
+            <section class="mb-3">
+                <div class="form-check form-switch">
+                    <label class="form-check-label" for="sendText">
+                        Inform user of changes (send a whatsapp message)
+                    </label>
+                    <input class="form-check-input" type="checkbox" id="sendText" name="sendText"/>
+                </div>
             </section>
-
             <div class="d-flex">
                 <% if(user.accessLevel === 2) { %>
                 <a onclick="if(confirm('Delete Test?')){window.location.href='/admin/delete-test/<%= test._id %>'}else{return false;};"

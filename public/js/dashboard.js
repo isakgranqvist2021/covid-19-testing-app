@@ -39,20 +39,19 @@ function unSelectRows() {
 
 async function submitForExport() {
     if (ids.length <= 0) return alert("no data selected");
-    console.log(ids);
-    // const response = await fetch("/admin/export-csv", {
-    //     method: "POST",
-    //     body: JSON.stringify(ids),
-    //     headers: {
-    //         "Content-Type": "application/json",
-    //     },
-    // }).then((res) => res.json());
+    const response = await fetch("/admin/export-csv", {
+        method: "POST",
+        body: JSON.stringify(ids),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then((res) => res.json());
 
-    // if (response.success) {
-    //     window.open(response.data, "_blank").focus();
-    // } else {
-    //     alert(response.message);
-    // }
+    if (response.success) {
+        window.open(response.data, "_blank").focus();
+    } else {
+        alert(response.message);
+    }
 }
 
 (function init() {
@@ -64,12 +63,3 @@ async function submitForExport() {
     rows.forEach((row) => row.addEventListener("click", () => selectRow(row)));
     exportBtn.addEventListener("click", () => submitForExport());
 })();
-
-/*
-    We should be able to select data by the following criteria for export or to view stats:
-    DATE X or DATE X
-    MONTH (JANUARY, FEBUARY ETC)
-    ENTITY’s FOR DATE, MONTH or YEAR.
-    STATUS for DATE, MONTH or YEAR.
-    TEST TYPE for DATE, MONTH or YEAR.
-*/
