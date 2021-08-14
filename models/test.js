@@ -65,6 +65,7 @@ export async function findTest(filter) {
             .exec();
 
         return Promise.resolve({
+            "test status": test.status,
             type: test.type.toUpperCase(),
             "Test ID": test.tid,
             name: test.name,
@@ -80,8 +81,6 @@ export async function findTest(filter) {
                     : "not applicable",
         });
     } catch (err) {
-        console.log(err);
-
         return Promise.reject("test not found");
     }
 }

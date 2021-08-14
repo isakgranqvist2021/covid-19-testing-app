@@ -51,26 +51,28 @@
                         Reset Filters
                     </a>
                     <section class="me-3 mb-3 flex-grow-1">
-                        <label class="form-label">From</label>
+                        <label class="form-label" for="from">From</label>
                         <input
                             type="date"
                             class="form-control"
+                            id="from"
                             name="from"
                             value="<%= filters.from %>"
                         />
                     </section>
                     <section class="me-3 mb-3 flex-grow-1">
-                        <label class="form-label">To</label>
+                        <label class="form-label" for="to">To</label>
                         <input
                             type="date"
                             class="form-control"
+                            id="to"
                             name="to"
                             value="<%= filters.to %>"
                         />
                     </section>
                     <section class="me-3 mb-3 flex-grow-1">
-                        <label class="form-label">Status</label>
-                        <select name="status" id="" class="form-control">
+                        <label class="form-label" for="status">Status</label>
+                        <select name="status" id="status" class="form-control">
                             <% ["all", "pending", "negative",
                             "positive"].forEach(status => { %> <% if(status ===
                             filters.status) { %>
@@ -83,8 +85,8 @@
                         </select>
                     </section>
                     <section class="me-3 mb-3 flex-grow-1">
-                        <label class="form-label">Test Type</label>
-                        <select name="type" id="" class="form-control">
+                        <label class="form-label" for="type">Test Type</label>
+                        <select name="type" id="type" class="form-control">
                             <% ["all", "rdt", "pcr"].forEach(type => { %> <%
                             if(type === filters.type) { %>
                             <option value="<%= type %>" selected>
@@ -96,8 +98,8 @@
                         </select>
                     </section>
                     <section class="me-3 mb-3 flex-grow-1">
-                        <label class="form-label">Entity</label>
-                        <select name="entity" id="" class="form-control">
+                        <label class="form-label" for="entity">Entity</label>
+                        <select name="entity" id="entity" class="form-control">
                             <% ["all", ...entities].forEach(entity => { %> <%
                             if(entity === filters.entity) { %>
                             <option value="<%= entity %>" selected>

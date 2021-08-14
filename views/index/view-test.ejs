@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/public/css/success.min.css" />
+
+<div class="container">
+    <div class="col-12 col-md-6 m-auto">
+        <div class="list-group">
+            <% for(let k in data) { %>
+            <li
+                class="
+                    list-group-item
+                    d-flex
+                    justify-content-between
+                    align-items-center
+                "
+            >
+                <span class="text-capitalize"><%= k %></span>
+                <span class="text-capitalize"><%= data[k] %></span>
+            </li>
+            <% } %>
+        </div>
+    </div>
+
+    <div class="company-logo">
+        <img src="/public/img/company-logo.png" alt="Company Logo" />
+    </div>
+</div>
+<%- include("../partials/contact-details") %>

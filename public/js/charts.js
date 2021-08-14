@@ -1,12 +1,3 @@
-/*
-    Current DAY total (RDT VS PCR)
-    7 days total (RDT VS PCR)
-    Current Month Total (RDT VS PCR)
-
-    Current Month data by entities (Entity A Vs Entity B Vs Entity C vs etc.)
-    Current month data by employment status. (Employee vs vendors/Guests)
-*/
-
 function getRandomRgb() {
     var num = Math.round(0xffffff * Math.random());
     var r = num >> 16;

@@ -36,12 +36,19 @@ export default async function update_test(req, res) {
 
         // send a what's app message to inform user of the results
 
-        console.log(process.env.TWILIO_NUMBER);
+        let p =
+            process.env.NODE_HOST === "development"
+                ? `:${process.env.NODE_PORT}`
+                : "";
+
+        let viewTestUrl = `${process.env.NODE_HOST}${p}/test/view/AGRD07042021164`;
+
+        console.log(viewTestUrl);
 
         client.messages
             .create({
                 from: `whatsapp:${process.env.TWILIO_NUMBER}`,
-                body: `Your test results: ${req.body.status}`,
+                body: `Your test results: ${req.body.status} - ${viewTestUrl}`,
                 to: "whatsapp:+46739986177",
             })
             .then((message) => console.log(message))
